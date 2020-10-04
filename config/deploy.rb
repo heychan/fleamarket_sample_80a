@@ -1,8 +1,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "3.14.1"
 
-set :application, "fleamarket_sample_80a"
-set :repo_url, "git@example.com:iidakyouhei/fleamarket_sample_80a.git"
+set :application, 'fleamarket_sample_80a'
+set :repo_url, 'git@github.com:iidakyouhei/fleamarket_sample_80a.git'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
