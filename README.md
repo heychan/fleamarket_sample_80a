@@ -7,7 +7,7 @@
 |password|string|null: false|
 
 ### Association
-- belongs_to :identity
+- has_one :identity
 - has_many :products
 - has_many :addresses
 
