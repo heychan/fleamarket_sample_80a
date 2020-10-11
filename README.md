@@ -7,9 +7,10 @@
 |password|string|null: false|
 
 ### Association
-- has_one :identity
-- has_many :products
-- has_many :addresses
+- has_one :identity dependent: :destroy
+- has_many :products dependent: :destroy
+- has_many :addresses dependent: :destroy
+- has_many :purchases dependent: :destroy
 
 ## productsテーブル
 
@@ -27,13 +28,14 @@
 |price|integer|null: false|
 
 ### Association
-- has_many :product_images
+- has_many :product_images dependent: :destroy
 - belongs_to_active_hash :category
 - belongs_to_active_hash :brand
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :shipping_cost
 - belongs_to_active_hash :area
 - belongs_to_active_hash :day
+- has_one :purchase dependent: :destroy
 
 ## product_imagesテーブル
 
@@ -43,7 +45,7 @@
 |product_id|integer|null: false, foreign_key: true|
 
 ### Association
-- has_many :products
+- has_many :products dependent: :destroy
 
 ## identitiesテーブル
 
@@ -72,4 +74,17 @@
 
 ### Association
 - belongs_to :user
+- belongs_to :purchase
 - belongs_to_active_hash :area
+
+## purchasesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|product_id|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :product
+- has_one :address dependent: :destroy
