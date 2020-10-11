@@ -27,15 +27,15 @@
 |price|integer|null: false|
 
 ### Association
-- has_many :images
-- belongs_to :category
-- belongs_to :brand
-- belongs_to :condition
-- belongs_to :shipping_cost
-- belongs_to :area
-- belongs_to :day
+- has_many :product_images
+- belongs_to_active_hash :category
+- belongs_to_active_hash :brand
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :shipping_cost
+- belongs_to_active_hash :area
+- belongs_to_active_hash :day
 
-## imagesテーブル
+## product_imagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -44,62 +44,6 @@
 
 ### Association
 - has_many :products
-
-## categoriesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-|ancestry|string|index: true|
-
-### Association
-- has_many :products
-
-## brandsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string||
-
-### Association
-- has_many :products
-
-## conditionsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :products
-
-## shipping_costsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|status|string|null: false|
-
-### Association
-- has_many :products
-
-## daysテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|day|string|null: false|
-
-### Association
-- has_many :products
-
-## areasテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|area|string|null: false|
-
-### Association
-- has_many :products
-- has_many :addresses
 
 ## identitiesテーブル
 
@@ -128,4 +72,4 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :area
+- belongs_to_active_hash :area
