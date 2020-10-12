@@ -9,6 +9,7 @@
 ### Association
 - has_one :identity dependent: :destroy
 - has_many :products dependent: :destroy
+- has_many :addresses dependent: :destroy
 - has_many :purchases dependent: :destroy
 
 ## productsテーブル
@@ -45,7 +46,7 @@
 |product_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to_active_hash :products dependent: :destroy
+- belongs_to_active_hash :products
 
 ## identitiesテーブル
 
@@ -73,8 +74,7 @@
 |tel|string||
 
 ### Association
-- belongs_to :purchase
-- belongs_to :area
+- belongs_to :user
 
 ## purchasesテーブル
 
@@ -86,4 +86,3 @@
 ### Association
 - belongs_to :user
 - belongs_to :product
-- has_one :address dependent: :destroy
