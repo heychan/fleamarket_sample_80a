@@ -29,7 +29,7 @@
 
 ### Association
 - has_many :product_images dependent: :destroy
-- belongs_to_active_hash :user
+- belongs_to :user
 - belongs_to_active_hash :category
 - belongs_to_active_hash :brand
 - belongs_to_active_hash :condition
@@ -46,7 +46,7 @@
 |product_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to_active_hash :products
+- belongs_to :products
 
 ## identitiesテーブル
 
