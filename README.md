@@ -1,24 +1,88 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false, unique:true|
+|email|string|null: false, unique:true|
+|password|string|null: false|
 
-Things you may want to cover:
+### Association
+- has_one :identity dependent: :destroy
+- has_many :products dependent: :destroy
+- has_many :addresses dependent: :destroy
+- has_many :purchases dependent: :destroy
 
-* Ruby version
+## productsテーブル
 
-* System dependencies
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|name|string|null: false|
+|description|text|null: false|
+|category_id|references|null: false, foreign_key: true|
+|brand_id|references|foreign_key: true|
+|condition_id|integer|null: false, foreign_key: true|
+|shipping_cost_id|integer|null: false, foreign_key: true|
+|area_id|integer|null: false, foreign_key: true|
+|day_id|integer|null: false, foreign_key: true|
+|price|integer|null: false|
 
-* Configuration
+### Association
+- has_many :product_images dependent: :destroy
+- belongs_to :user
+- belongs_to_active_hash :category
+- belongs_to_active_hash :brand
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :shipping_cost
+- belongs_to_active_hash :area
+- belongs_to_active_hash :day
+- has_one :purchase dependent: :destroy
 
-* Database creation
+## product_imagesテーブル
 
-* Database initialization
+|Column|Type|Options|
+|------|----|-------|
+|image|text|null: false|
+|product_id|integer|null: false, foreign_key: true|
 
-* How to run the test suite
+### Association
+- belongs_to :products
 
-* Services (job queues, cache servers, search engines, etc.)
+## identitiesテーブル
 
-* Deployment instructions
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|furigana|string|null: false|
+|birth_day|date|null: false|
 
-* ...
+### Association
+- belongs_to :user
+
+## addressesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|name|string|null: false|
+|furigana|string|null: false|
+|postal_code|string|null: false|
+|area_id|integer|null: false, foreign_key: true|
+|city|string|null: false|
+|house_number|string|null: false|
+|room_number|string||
+|tel|string||
+
+### Association
+- belongs_to :user
+
+## purchasesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|product_id|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :product
