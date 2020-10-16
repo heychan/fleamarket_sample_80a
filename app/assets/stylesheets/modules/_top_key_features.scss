@@ -1,0 +1,45 @@
+.TopKeyFeatures {
+  padding: 60px 100px;
+  background-color: #ffffff;
+  .Head {
+    font-size: 27px;
+    text-align: center;
+    margin: 0 0 40px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    position: relative;
+    
+  }
+  .Head::after {
+    content: "";
+    width: 70px;
+    height: 4px;
+    background-color: #3ccace;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .items {
+    max-width: calc(1040px + 20px);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    .item {
+      padding: 0 20px;
+      img {
+        width: 100%;
+        vertical-align: bottom;
+      }
+      &__SubTitle {
+        margin: 38px 0 10px;
+        font-size: 19px;
+        font-weight: bold;
+        text-align: center;
+        font-family: sans-serif;
+        
+      }
+    }
+  }
+}
