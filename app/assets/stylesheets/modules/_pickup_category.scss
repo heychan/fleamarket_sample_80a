@@ -1,0 +1,70 @@
+.PickUpContainer {
+  padding: 80px 0 0;
+  background-color: #f8f8f8;
+  height: 100%;
+  margin: 0;
+}
+
+.Head {
+  text-align: center;
+  font-size: 28px;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+.ProductBox {
+  margin: 0;
+  padding: 0;
+  .ProductHead {
+    font-weight: bold;
+    text-align: center;
+    font-family: sans-serif;
+  }
+  a {
+    text-decoration: none;
+    color: #3ccace;
+    font-size: 24px;
+  }
+  .ProductLists {
+    width: 780px;
+    margin: 26px auto;
+    display: flex;
+    justify-content: space-around;
+    .ProductList {
+      width: 220px;
+      display: inline-block;
+      &__img {
+        width: 220px;
+        height: 150px;
+        margin: 0;
+        overflow: hidden;
+        z-index: auto;
+      }
+      img {
+        width: 220px;
+        height: 150px;
+      }
+      &__body {
+        background-color: white;
+        color: #333;
+        padding: 16px;
+        .name {
+          line-height: 1.5;
+          font-size: 16px;
+          text-align: left;
+          font-family: sans-serif;
+        }
+        .details {
+          font-size: 16px;
+          ul {
+            display: flex;
+            justify-content: space-between;
+          }
+          p {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+}
