@@ -1,0 +1,21 @@
+.Header
+  .Inner
+    .Main__header
+      .Icon
+        = image_tag '/assets/logo/logo.png', alt: '', class: 'Main__header__icon'
+      .Search__box
+        %form.Form__contents
+          %input.Form__inputText{"placeholder": "キーワードから探す", "type": "text"}
+          = button_tag 
+          -# %input.Form__submitBtn{"name": "commit", "type": "submit", "value": "Send"}
+    .Nav
+      %ul.Lists__left
+        %li
+          = link_to 'カテゴリー'
+        %li
+          = link_to 'ブランド'
+      %ul.Lists__right
+        %li
+          = link_to 'ログイン'
+        %li
+          = link_to '新規会員登録'
