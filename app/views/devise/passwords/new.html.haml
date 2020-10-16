@@ -1,0 +1,14 @@
+.AccountPage
+  .AccountPage__title
+    %h2 パスワードをお忘れの方
+
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .field
+        = f.label :パスワードをお忘れの方は、パスワードを再発行いたしますので
+        登録しているメールアドレスを入力してください。
+        %br/
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス",class: 'field__box'
+      .actions
+        = f.submit "再発行する",class: 'actions__box'
+    = render "devise/shared/links"

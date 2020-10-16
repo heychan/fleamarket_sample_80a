@@ -1,0 +1,61 @@
+.AccountPage {
+  width: 500px;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 60px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+
+}
+.AccountPage__title {
+  width: 500px;
+  font-weight: 200;
+  position: relative;
+  top: 50%;
+  right: 10px;
+  h2 {
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    font-size: 30px;
+  }
+  &__icon{
+    width: 200px;
+  }
+}
+.new_user{
+  margin-left: 10px;
+}
+.field{
+
+  
+  &__box{
+    width: 300px;
+    height: 30px;
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  &__bottom{
+    width: 250px;
+    text-decoration: none;
+    color: #38AEF0;
+    font-size: 15px;
+  }
+}
+
+.actions{
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 250px;
+  
+  &__box{
+    width: 100px;
+    height: 30px;
+  }
+}
+
