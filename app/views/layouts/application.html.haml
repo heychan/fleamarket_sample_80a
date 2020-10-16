@@ -8,10 +8,4 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .Header
-      .Inner
-        .Main__header
-          .icon
-            = image_tag '/assets/logo/logo.png', alt: '', class: 'Main__header__icon'
     = yield
-    .footer
