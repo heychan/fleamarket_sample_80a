@@ -1,6 +1,7 @@
 .TopKeyFeatures {
   padding: 60px 100px;
   background-color: #ffffff;
+  box-sizing: border-box;
   .Head {
     font-size: 27px;
     text-align: center;
@@ -37,8 +38,13 @@
         font-size: 19px;
         font-weight: bold;
         text-align: center;
-        font-family: sans-serif;
-        
+        font-family: sans-serif; 
+      }
+      &__detail {
+        font-size: 17px;
+        font-weight: 200;
+        text-align: left;
+        margin: 0 0 40px;
       }
     }
   }
