@@ -21,15 +21,14 @@
       margin: 20px auto 0;
       display: flex;
       justify-content: center;
-    }
-    .LinkIconABtn  {
+      &__abtn  {
       width: 180px;
-      height: 53px;
+      height: 60px;
       margin: 15px 0;
-    }
-    .LinkIconGBtn {
-      width: 210px;
-      height: 83px;
+     }
+      &__gbtn {
+        height: 90px;
+     }
     }
   }
 }
