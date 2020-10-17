@@ -2,7 +2,8 @@
   .Inner
     .Main__header
       .Icon
-        = image_tag '/assets/logo/logo.png', alt: '', class: 'Main__header__icon'
+        = link_to('#')do
+          = image_tag '/assets/logo/logo.png', alt: '', class: 'Main__header__icon'
       .Search__box
         %form.Form__contents
           %input.Form__inputText{"placeholder": "キーワードから探す", "type": "search"}
