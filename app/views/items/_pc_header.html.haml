@@ -5,9 +5,10 @@
         = image_tag '/assets/logo/logo.png', alt: '', class: 'Main__header__icon'
       .Search__box
         %form.Form__contents
-          %input.Form__inputText{"placeholder": "キーワードから探す", "type": "text"}
-          = button_tag 
-          -# %input.Form__submitBtn{"name": "commit", "type": "submit", "value": "Send"}
+          %input.Form__inputText{"placeholder": "キーワードから探す", "type": "search"}
+          %button.Search__btn{"type": "submit"}
+            = image_tag '/assets/icon/icon-search 1.png', class: 'Search__btn--icon'
+
     .Nav
       %ul.Lists__left
         %li

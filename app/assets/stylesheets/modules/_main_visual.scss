@@ -3,10 +3,6 @@
   height: 560px;
   background-image: url(/assets/pict/bg-mainVisual-pict_pc.jpg);
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
-  position: relative;
-  padding: 0 60px;
   display: flex;
   align-items: center;
   .Content{
@@ -33,9 +29,13 @@
       &__btn{
         width: 180px;
         margin-right: 10px;
-        .Btn--image{
+        &--abtn{
           width: 100%;
           vertical-align: bottom;
+          margin-top: 15px;
+        }
+        &--gbtn{
+          height: 90px;
         }
       }
     }
