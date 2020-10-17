@@ -1,6 +1,5 @@
 .Top__introduction{
   padding: 60px 20px;
-  width: 100%;
   .Subtitle{
     text-align: center;
     font-size: 26px;
@@ -9,6 +8,16 @@
     margin-bottom: 25px;
     padding-bottom: 15px;
     position: relative;
+  }
+  .Subtitle::after {
+    content: "";
+    width: 70px;
+    height: 4px;
+    background-color: #3ccace;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .Lists{
     display: flex;
@@ -22,8 +31,17 @@
       flex-direction: column;
       align-items: center;
       &__pict{
+        position: relative;
+        margin-bottom: 20px;
         .img{
           width: 100%;
+        }
+        span{
+          position: absolute;
+          font-size: 30px;
+          padding: 10px 20px;
+          background-color: #3CCACE;
+          color: #fff;
         }
       }
       &__text{
