@@ -10,7 +10,7 @@
 |birth_day|date|null: false|
 
 ### Association
-- has_one :Card dependent: :destroy
+- has_one :card dependent: :destroy
 - has_many :products dependent: :destroy
 - has_many :addresses dependent: :destroy
 - has_many :purchases dependent: :destroy
@@ -51,7 +51,7 @@
 ### Association
 - belongs_to :products
 
-## Cardテーブル
+## cardsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
