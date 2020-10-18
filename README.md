@@ -5,9 +5,12 @@
 |nickname|string|null: false, unique:true|
 |email|string|null: false, unique:true|
 |password|string|null: false|
+|name|string|null: false|
+|furigana|string|null: false|
+|birth_day|date|null: false|
 
 ### Association
-- has_one :identity dependent: :destroy
+- has_one :card dependent: :destroy
 - has_many :products dependent: :destroy
 - has_many :addresses dependent: :destroy
 - has_many :purchases dependent: :destroy
@@ -48,13 +51,13 @@
 ### Association
 - belongs_to :products
 
-## identitiesテーブル
+## cardsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
-|furigana|string|null: false|
-|birth_day|date|null: false|
+|user_id|integer|null: false, foreign_key: true|
+|customer_id|string|null: false|
+|card_id|string|null: false|
 
 ### Association
 - belongs_to :user
