@@ -1,61 +1,136 @@
 .AccountPage {
-  width: 500px;
-  margin: auto;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  padding: 60px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  &__header{
+    text-align: center;
+    padding: 40px;
+  }
+}
+.icon{
+  width: 120px;
+  margin: 0 auto;
+}
+.Main-AccountPage{
+  width: 100%;
+  &__move{
+    width: 500px;
+    margin: auto;
+    background-color: #fff;
+    &--title{
+      padding: 40px 64px 20px;
+    }
+  }
 }
 .AccountPage__title {
-  width: 500px;
-  font-weight: 200;
-  position: relative;
-  top: 50%;
-  right: 10px;
-  h2 {
-    margin-bottom: 10px;
-    letter-spacing: 3px;
-    font-size: 30px;
-  }
-  &__icon{
-    width: 200px;
-  }
+  padding: 0 0 40px 0;
+  border-top: 1px solid #f8f8f8;
 }
 .new_user{
-  margin-left: 10px;
+  max-width: 320px;
+  margin: auto;
 }
-.field{
-
-  
+.field{  
+  width: 100%;
+  height: 30px;
+  margin: 40px 0 0;
   &__box{
-    width: 300px;
-    height: 30px;
-    padding-left: 20px;
-    margin-top: 10px;
+    width: calc(100% - 32px);
+    margin: 8px 0 0;
+    padding-left: 10px;
+    font-size: 16px;
+    height: 28px;
+  }
+  &__boxmin{
+    width: calc(50% - 20px);
+    margin: 8px 0 0;
+    margin-right: 8px;
+    padding-left: 10px;
+    font-size: 16px;
+    height: 28px;
+  }
+  &__date-box{
+    width: calc(100% - 50px);
+    margin: 8px 0 0;
+    font-size: 16px;
+    height: 28px;
+    display: flex;
   }
   &__bottom{
-    width: 250px;
+    display: block;
+    margin: 30px auto 0;
+    max-width: 320px;
     text-decoration: none;
-    color: #38AEF0;
-    font-size: 15px;
+    color: #ffb340;
+    font-size: 14px;
+    text-align: center;
   }
 }
-
+.fields{  
+  width: 100%;
+  height: 30px;
+  display: flex;
+  &__boxmin{
+    width: calc(50% - 6px);
+    margin: 8px 0 0;
+    margin-right: 8px;
+    padding-left: 10px;
+    font-size: 16px;
+    height: 28px;
+    display: inline;
+  }
+}
+.year,.month,.day{
+  margin:0 auto;
+}
 .actions{
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 250px;
   
   &__box{
-    width: 100px;
-    height: 30px;
+    line-height: 35px;
+    background: #3CCACE;
+    border: 1px solid #3CCACE;
+    color: #ffffff;
+    margin: 40px 0 0;
+    width: 80%;
+    margin-left:25px
+  }
+}
+.newText{
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.inner{
+  width: 456px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+  display: flex;
+  &__box{
+    display: block;
+    font-size: 10px;
+    margin: 0 auto;
+  }
+  &--text{
+    font-size: 12px;
+    padding: 0 10px;
+    display: inline-block;
   }
 }
 
+.usrfooter-logo{
+  text-align: center;
+  &__icon{
+  max-width: 160px;
+  width: 100%;
+  margin: auto;
+  }
+}
+.Mandatory{
+  background-color: #3CCACE;
+  color: #ffffff;
+  font-size: 14px;
+  border-radius: 2px;
+  padding: 0 2px;
+  display: inline-block;
+}
