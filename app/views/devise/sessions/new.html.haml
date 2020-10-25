@@ -1,14 +1,29 @@
 .AccountPage
-  .AccountPage__title
-    = image_tag asset_path('logo/logo.png'), alt: '', class: 'AccountPage__title__icon'
+  .AccountPage__header
+    = image_tag asset_path('logo/logo.png'), alt: '', class: 'icon'
 
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .field
-        %br/
-        = f.email_field :email, autofocus: true, placeholder: "メールアドレス", autocomplete: "email",class: 'field__box'
-      .field
-        %br/
-        = f.password_field :password, placeholder: "パスワード", autocomplete: "current-password",class: 'field__box'
-      .actions
-        = f.submit "ログイン",class: 'actions__box'
-    = render "devise/shared/links"
+  .Main-AccountPage
+    .Main-AccountPage__move
+      .Main-AccountPage__move--title
+        %p.newText ログイン
+      .AccountPage__title
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .field
+            = f.email_field :email, autofocus: true, placeholder: "メールアドレス", autocomplete: "email",class: 'field__box'
+          .field
+            = f.password_field :password, placeholder: "パスワード", autocomplete: "current-password",class: 'field__box'
+          .actions
+            = f.submit "ログイン",class: 'actions__box'
+        = render "devise/shared/links"
+    %f.usrfooter
+      %ul.inner
+        %li.inner__box 
+          %p.inner__box--text プライバシーポリシー
+        %li.inner__box
+          .inner__box--text FURIMA利用規約
+        %li.inner__box
+          .inner__box--text 特定商取引に関する表記
+    .usrfooter-logo
+      = image_tag asset_path('logo/logo.png'), alt: '', class: 'usrfooter-logo__icon'
+      
+
