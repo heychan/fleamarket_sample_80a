@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'items#index'
+  resources :items, only: [:index, :new]
   devise_scope :users do
     get '/users', to: redirect("/users/sign_up")
   end
