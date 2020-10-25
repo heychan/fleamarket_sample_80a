@@ -11,13 +11,17 @@
       display: flex;
       align-items: center;
       .Icon{
-
-      }
-      &__icon{
         padding-bottom: 10px;
         margin-right: 30px;
         border-radius: 4px;
-        height: 40px;
+        a{
+          width: 140px;
+          display: block;
+          .Main__header__icon{
+            width: 100%;
+            vertical-align: bottom;
+          }
+        }
       }
       .Search__box{
         margin-left: auto;
