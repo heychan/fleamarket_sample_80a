@@ -11,6 +11,7 @@
         .Content__Image__Form
           = f.label :image do
             = image_tag src= "icon/icon_camera.png", class: "Content__Image__Form__Icon"
+            %p クリックしてファイルをアップロード
             = f.file_field :image, class: "Content__Image__Form__tag"
             %input{class:"Content__Image__Form__tag", type: "file"}
             %input{class:"Content__Image__Form__tag", type: "file"}
@@ -26,7 +27,7 @@
       .Content__title
         %label.Content__title__name 商品の説明
         %span.Content__title__Atag 必須
-      = f.text_area :content, placeholder: '商品の説明', class: "Content__BField"
+      = f.text_area :content, placeholder: '商品の説明(必須)', class: "Content__BField"
     .Content
       .Content__title
         %label.Content__title__name カテゴリー
@@ -62,4 +63,4 @@
       = f.submit '出品する', class: 'Send__ABtn'
       .ReturnBtn
         = link_to'もどる'
- 
+    = render 'devise/registrations/footer'
