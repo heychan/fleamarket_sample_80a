@@ -1,0 +1,19 @@
+-# -if user_signed_in? && @user == current_user
+-#   - new_user_session_path
+-# -else
+-#   %h1ユーザーページ
+= render "items/pc_header"
+.MyAccountPage
+  .MyAccountPage__header
+
+  .UserIntroduction
+    .UserIntroduction__main
+      .UserIntroduction__main--name
+        = @user.nickname
+    %p.Separation 設定
+    .UserIntroduction__function
+      .UserIntroduction__function--box
+        = link_to "ログアウト", users_out_path, class: "link-box"
+      .UserIntroduction__function--box
+        = link_to "クレジットカード登録", card_new_path,class: "link-box"
+= render "items/footer"
