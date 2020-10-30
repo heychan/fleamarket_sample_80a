@@ -1,7 +1,7 @@
 .Listing
   .TopIcon
     = image_tag '/assets/logo/logo.png', alt: '', class: 'TopIcon__icon'
-  = form_for new_item_path, method: :post, local: true do |f|
+  = form_for @item, method: :post, local: true do |f|
     .Content
       .Content__title
         %label.Content__title__name 出品画像
@@ -9,16 +9,10 @@
       %p.Content__text 最大5枚までアップロードできます
       .Content__Image
         .Content__Image__Form
-          = f.label :image do
-            = image_tag src= "icon/icon_camera.png", class: "Content__Image__Form__Icon"
-            %p クリックしてファイルをアップロード
-            = f.file_field :image, class: "Content__Image__Form__tag"
-            %input{class:"Content__Image__Form__tag", type: "file"}
-            %input{class:"Content__Image__Form__tag", type: "file"}
-            %input{class:"Content__Image__Form__tag", type: "file"}
-            %input{class:"Content__Image__Form__tag", type: "file"}
-            %input{class:"Content__Image__Form__tag", type: "file"}
-            %input{class:"Content__Image__Form__tag", type: "file"}
+          = image_tag src= "icon/icon_camera.png", class: "Content__Image__Form__Icon"
+          %p クリックしてファイルをアップロード
+          = f.fields_for :item_images do |i|
+            = i.file_field :image, multiple: true, class: "Content__Image__Form__tag"
     .Content
       .Content__title
         %label.Content__title__name 商品名
@@ -27,7 +21,7 @@
       .Content__title
         %label.Content__title__name 商品の説明
         %span.Content__title__Atag 必須
-      = f.text_area :content, placeholder: '商品の説明(必須)', class: "Content__BField"
+      = f.text_area :description, placeholder: '商品の説明(必須)', class: "Content__BField"
     .Content
       .Content__title
         %label.Content__title__name カテゴリー
