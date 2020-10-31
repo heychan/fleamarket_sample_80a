@@ -12,7 +12,7 @@
     width: calc(100% - 400px);
     height: 300px;
     margin: auto;
-    background-image: url("pict/bg-appBanner-pict.jpg");
+    background-image: image-url("pict/bg-appBanner-pict.jpg");
     background-size: cover;
     &--name{
       font-size: 30px;
