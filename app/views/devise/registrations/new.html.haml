@@ -29,23 +29,23 @@
             %span.Mandatory 必須
             = f.password_field :password, autocomplete: "new-password",class: 'field__box', placeholder: "6文字以上の半角英数字"
           %br/
-          -# .field
-          -#   = f.label :お名前（全角）
-          -#   %span.Mandatory 必須
-          -# .fields
-          -#   = f.text_field :last_name, autofocus: true, autocomplete: "last_name",class: 'fields__boxmin', placeholder: "例）歩利馬"
-          -#   = f.text_field :first_name, autofocus: true, autocomplete: "first_name",class: 'fields__boxmin', placeholder: "例）太郎"
-          -# .field
-          -#   = f.label :お名前カナ（全角）
-          -#   %span.Mandatory 必須
-          -# .fields
-          -#   = f.text_field :last_name_furigana, autocomplete: "last_name_furigana",class: 'fields__boxmin', placeholder: "例）フリマ"
-          -#   = f.text_field :first_name_furigana, autocomplete: "first_name_furigana",class: 'fields__boxmin', placeholder: "例）タロウ"
           .field
-            = f.label :生年月日
+            = f.label :お名前（全角）
             %span.Mandatory 必須
-            .field__date-box
-              = f.date_select :birth_date, use_month_numbers: true,with_css_classes:'daybox', prompt:"--",start_year: 1930, start_year:Time.now.year, end_year:1900
+          .fields
+            = f.text_field :last_name, autofocus: true, autocomplete: "last_name",class: 'fields__boxmin', placeholder: "例）歩利馬"
+            = f.text_field :first_name, autofocus: true, autocomplete: "first_name",class: 'fields__boxmin', placeholder: "例）太郎"
+          .field
+            = f.label :お名前カナ（全角）
+            %span.Mandatory 必須
+          .fields
+            = f.text_field :last_name_furigana, autocomplete: "last_name_furigana",class: 'fields__boxmin', placeholder: "例）フリマ"
+            = f.text_field :first_name_furigana, autocomplete: "first_name_furigana",class: 'fields__boxmin', placeholder: "例）タロウ"
+          -# .field
+          -#   = f.label :生年月日
+          -#   %span.Mandatory 必須
+          -#   .field__date-box
+          -#     = f.date_select :birth_date, use_month_numbers: true,with_css_classes:'daybox', prompt:"--",start_year: 1930, start_year:Time.now.year, end_year:1900
           %br/
           .actions
             = f.submit "登録",class: 'actions__box'
