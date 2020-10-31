@@ -1,0 +1,44 @@
+.MyAccountPage {
+  min-height: calc(100vh - 400px);
+  background-color: #f8f8f8;
+  &__header{
+    text-align: center;
+    padding: 40px;
+  }
+}
+.UserIntroduction{
+  width: 100%;
+  &__main{
+    width: calc(100% - 400px);
+    height: 300px;
+    margin: auto;
+    background-image: url("pict/bg-appBanner-pict.jpg");
+    background-size: cover;
+    &--name{
+      font-size: 30px;
+      text-align: center;
+      padding-top: 150px;
+      color: #fff;
+      text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+  }
+  &__function{
+    width: calc(100% - 400px);
+    margin: auto;
+    background-color: #fff;
+    
+    &--box{
+      border: 2px solid #f8f8f8;
+      padding: 8px;
+    }
+.link-box{
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
+  }
+}
+.Separation{
+  margin: 30px 0 0 200px;
+  font-size: 23px;
+}
