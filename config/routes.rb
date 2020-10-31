@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   get 'card/new'
   get 'card/show'
-  get 'users/show' => 'users#show'
-  get 'users/out' => 'users#index'
-  get '/mypage' => 'users#mypage'
+  get "users/show", to: "users#show"
+  get "users/out", to: "users#index"
+  get "/mypage", to: "users#mypage"
   devise_for :users
   root 'items#index'
   resources :users, only: [:show,:destroy]
