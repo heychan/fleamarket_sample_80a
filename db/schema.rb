@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_064752) do
+ActiveRecord::Schema.define(version: 2020_10_30_180622) do
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "image", null: false
@@ -24,22 +32,14 @@ ActiveRecord::Schema.define(version: 2020_10_28_064752) do
     t.string "name", null: false
     t.text "description", null: false
     t.integer "price", null: false
-    t.bigint "user_id", null: false
     t.integer "condition_id", null: false
     t.integer "shipping_cost_id", null: false
     t.integer "day_id", null: false
     t.integer "area_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_items_on_user_id"
-ActiveRecord::Schema.define(version: 2020_10_26_124541) do
-
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "ancestry"
-    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,5 +62,5 @@ ActiveRecord::Schema.define(version: 2020_10_26_124541) do
   end
 
   add_foreign_key "item_images", "items"
-  add_foreign_key "items", "users"
+  add_foreign_key "items", "categories"
 end
