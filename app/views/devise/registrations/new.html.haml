@@ -29,18 +29,18 @@
             %span.Mandatory 必須
             = f.password_field :password, autocomplete: "new-password",class: 'field__box', placeholder: "6文字以上の半角英数字"
           %br/
-          .field
-            = f.label :お名前（全角）
-            %span.Mandatory 必須
-          -# .fields
-          -#   = f.text_field :last_name, autofocus: true, autocomplete: "last_name",class: 'fields__boxmin', placeholder: "例）歩利馬"
-          -#   = f.text_field :first_name, autofocus: true, autocomplete: "first_name",class: 'fields__boxmin', placeholder: "例）太郎"
-          .field
-            = f.label :お名前カナ（全角）
-            %span.Mandatory 必須
-          -# .fields
-          -#   = f.text_field :last_name_furigana, autocomplete: "last_name_furigana",class: 'fields__boxmin', placeholder: "例）フリマ"
-          -#   = f.text_field :first_name_furigana, autocomplete: "first_name_furigana",class: 'fields__boxmin', placeholder: "例）タロウ"
+          -# .field
+          -#   = f.label :お名前（全角）
+          -#   %span.Mandatory 必須
+          .fields
+            = f.text_field :last_name, autofocus: true, autocomplete: "last_name",class: 'fields__boxmin', placeholder: "例）歩利馬"
+            = f.text_field :first_name, autofocus: true, autocomplete: "first_name",class: 'fields__boxmin', placeholder: "例）太郎"
+          -# .field
+          -#   = f.label :お名前カナ（全角）
+          -#   %span.Mandatory 必須
+          .fields
+            = f.text_field :last_name_furigana, autocomplete: "last_name_furigana",class: 'fields__boxmin', placeholder: "例）フリマ"
+            = f.text_field :first_name_furigana, autocomplete: "first_name_furigana",class: 'fields__boxmin', placeholder: "例）タロウ"
           .field
             = f.label :生年月日
             %span.Mandatory 必須
