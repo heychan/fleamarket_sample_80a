@@ -41,11 +41,11 @@
           .fields
             = f.text_field :last_name_furigana, autocomplete: "last_name_furigana",class: 'fields__boxmin', placeholder: "例）フリマ"
             = f.text_field :first_name_furigana, autocomplete: "first_name_furigana",class: 'fields__boxmin', placeholder: "例）タロウ"
-          -# .field
-          -#   = f.label :生年月日
-          -#   %span.Mandatory 必須
-          -#   .field__date-box
-          -#     = f.date_select :birth_date, use_month_numbers: true,with_css_classes:'daybox', prompt:"--",start_year: 1930, start_year:Time.now.year, end_year:1900
+          .field
+            = f.label :生年月日
+            %span.Mandatory 必須
+            .field__date-box
+              = f.date_select :birth_date, use_month_numbers: true,with_css_classes:'daybox', prompt:"--",start_year: 1930, start_year:Time.now.year, end_year:1900
           %br/
           .actions
             = f.submit "登録",class: 'actions__box'
