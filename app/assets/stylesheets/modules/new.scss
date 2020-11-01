@@ -55,12 +55,8 @@
       align-items: center;
       &__Form{
         text-align: center;
-        &__Icon {
-          width: 50px;
-          height: 50px;
-        }
         &__tag {
-          //display: none;
+          display: none;
         }
       }
     }

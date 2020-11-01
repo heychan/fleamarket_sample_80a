@@ -9,10 +9,11 @@
       %p.Content__text 最大5枚までアップロードできます
       .Content__Image
         .Content__Image__Form
-          = image_tag src= "icon/icon_camera.png", class: "Content__Image__Form__Icon"
-          %p クリックしてファイルをアップロード
           = f.fields_for :item_images do |i|
-            = i.file_field :image, multiple: true, class: "Content__Image__Form__tag"
+            = i.file_field :image, multiple: true, class: "Content__Image__Form__tag", id:"img-file"
+            %label{for: "img-file"}
+              %i.fas.fa-camera.fa-2x
+              %p クリックしてファイルをアップロード
     .Content
       .Content__title
         %label.Content__title__name 商品名
@@ -30,7 +31,7 @@
       .Content__title
         %label.Content__title__name ブランド
         %span.Content__title__Btag 任意
-      = f.text_field :name, placeholder: "例）シャネル", class: "Content__AField"
+      = f.text_field :brand_name, placeholder: "例）シャネル", class: "Content__AField"
       .Content__title
         %label.Content__title__name 商品の状態
         %span.Content__title__Atag 必須
