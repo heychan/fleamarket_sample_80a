@@ -1,19 +1,21 @@
 %Nav.Bread__crumbs
   %ul
     %li
-      = link_to 'FURIMA'
+      = link_to 'FURIMA', root_path
     %li
-      = link_to 'ベビー・キッズ'
+      = link_to "#{@category.parent.parent.name}"
     %li
-      = link_to 'ベビー服(男女兼用) ~95cm'
+      = link_to "#{@category.parent.name}"
     %li
-      = link_to 'アウター'
-    %p お肉
+      = link_to "#{@category.name}"
+    %p 
+      = @item.name
 .Show__main
   .Content
     .Top__content
       .Item__box
-        %h2.Item__box__name お肉
+        %h2.Item__box__name 
+          = @item.name
         .Item__box__body
           = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG', class: 'Main__image'
           %ul.Sub__image
@@ -24,22 +26,28 @@
             %li
               = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/15/a003.png', class: ''
         .Item__box__price
-          %p ¥65536
+          %p
+            ¥
+            = @item.price
           .Item__box__price--detail
             %span (税込)
-            %span 送料込み
-        .Item__detail 　幼時から父は、私によく、金閣のことを語った。私の生れたのは、舞鶴から東北の、日本海へ突き出たうらさびしい岬である。父の故郷はそこではなく、舞鶴東郊の志楽(しらく)である。懇望されて、僧籍に入り、辺鄙な岬の寺の住職になり、その地で妻をもらって、私という子を設けた。
+            %span 
+              = @shipping_cost.status
+        .Item__detail
+          = @item.description
         .Table
           %table
             %tr
               %th 出品者
-              %td iida
+              %td へいちゃん
             %tr
               %th カテゴリー
               %td
-                = link_to 'ベビー・キッズ'
-                = link_to 'ベビー服(男女兼用) ~95cm'
-                = link_to 'アウター'
+                = link_to "#{@category.parent.parent.name}"
+                %br
+                = link_to "#{@category.parent.name}"
+                %br
+                = link_to "#{@category.name}"
               %tr
                 %th ブランド
                 %td オージービーフ
@@ -48,17 +56,20 @@
                 %td 200g
               %tr
                 %th 商品の状態
-                %td 食べかけ
+                %td 
+                  = @condition.name
               %tr
                 %th 送料の負担
-                %td 送料込み（出品者負担）
+                %td
+                  = @shipping_cost.status
               %tr
                 %th 発送元の地域
                 %td
-                  = link_to '愛知県'
+                  = @area.name
               %tr
                 %th 発送日の目安
-                %td 1年以内に発送
+                %td 
+                  = @day.day
         .Optional__area
           %ul
             %li.Optional__btn--likebtn
@@ -85,7 +96,7 @@
       %li
         = link_to '次の商品 >'
     .Related__items
-      = link_to 'ベビー・キッズをもっと見る'
+      = link_to "#{@category.parent.parent.name}をもっと見る"
       .ProductLists
         .ProductList
           =link_to item_path(2) do
