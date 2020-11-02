@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def index
+    @items = Item.order('created_at DESC').limit(5)
   end
 
   def new
@@ -17,6 +18,13 @@ class ItemsController < ApplicationController
   end
 
   def show
+    # @user = User.find(params[:id])
+    @category = Category.find(388)
+    @item = Item.find(params[:id])
+    @condition = Condition.find(params[:id])
+    @shipping_cost = ShippingCost.find(params[:id])
+    @area = Area.find(params[:id])
+    @day = Day.find(params[:id])
   end
 
   private
