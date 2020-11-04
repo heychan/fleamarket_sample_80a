@@ -1,6 +1,6 @@
 .Listing
   .TopIcon
-    = image_tag '/assets/logo/logo.png', alt: '', class: 'TopIcon__icon'
+    = image_tag src='/assets/logo/logo.png', alt: '', class: 'TopIcon__icon'
   = form_for @item, method: :post, local: true do |f|
     .Content
       .Content__title
@@ -18,20 +18,20 @@
       .Content__title
         %label.Content__title__name 商品名
         %span.Content__title__Atag 必須
-      = f.text_field :name, placeholder: "40文字まで", class: "Content__AField"
+      = f.text_field :name, placeholder: " 40文字まで", class: "Content__AField"
       .Content__title
         %label.Content__title__name 商品の説明
         %span.Content__title__Atag 必須
-      = f.text_area :description, placeholder: '商品の説明(必須)', class: "Content__BField"
+      = f.text_area :description, placeholder: ' 商品の説明(必須)', class: "Content__BField"
     .Content
       .Content__title
         %label.Content__title__name カテゴリー
         %span.Content__title__Atag 必須
-      = f.text_field :category_id, placeholder: "", class: "Content__AField"
+      = f.collection_select(:category_id, Category.all, :id, :name,{include_blank: "選択してください"}, class: "Content__AField" )
       .Content__title
         %label.Content__title__name ブランド
         %span.Content__title__Btag 任意
-      = f.text_field :brand_name, placeholder: "例）シャネル", class: "Content__AField"
+      = f.text_field :brand_name, placeholder: " 例）シャネル", class: "Content__AField"
       .Content__title
         %label.Content__title__name 商品の状態
         %span.Content__title__Atag 必須
@@ -40,7 +40,7 @@
       .Content__title
         %label.Content__title__name 配送料の負担
         %span.Content__title__Atag 必須
-      = f.collection_select(:shipping_cost_id, ShippingCost.all, :id, :status,{include_blank: "選択してください"}, class: "Content__AField" )
+      = f.collection_select(:shipping_cost_id, ShippingCost.all, :id, :status,{include_blank: " 選択してください"}, class: "Content__AField" )
       .Content__title
         %label.Content__title__name 発送元の地域
         %span.Content__title__Atag 必須
@@ -53,7 +53,7 @@
       .Content__title
         %label.Content__title__name 販売価格
         %span.Content__title__Atag 必須
-      = f.text_field :price, placeholder: "¥300 ~ 2,000,000", class: "Content__CField"
+      = f.text_field :price, placeholder: " ¥300 ~ 2,000,000", class: "Content__CField"
     .Send
       = f.submit '出品する', class: 'Send__ABtn'
       .ReturnBtn
