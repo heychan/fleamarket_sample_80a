@@ -19,6 +19,11 @@ class ItemsController < ApplicationController
   def show
   end
 
+# 商品購入確認ページのフロントエンド確認のため仮置き
+  def buy
+    
+  end
+
   private
 
   def item_params
