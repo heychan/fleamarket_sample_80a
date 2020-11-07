@@ -4,13 +4,16 @@ Rails.application.routes.draw do
   get "users/show", to: "users#show"
   get "users/out", to: "users#index"
   get "/mypage", to: "users#mypage"
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+  }
+  devise_scope :user do
+    get 'addresses', to: 'users/registrations#new_address'
+    post 'addresses', to: 'users/registrations#create_address'
+  end
   root 'items#index'
   resources :users, only: [:show,:destroy]
   resources :items, only: [:index, :new, :show]
-  devise_scope :users do
-    get '/users', to: redirect("/users/sign_up")
-  end
   resources :card, only: [:new, :show] do
     collection do
       post 'show', to: 'card#show'

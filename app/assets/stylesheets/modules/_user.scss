@@ -24,6 +24,10 @@
 .AccountPage__title {
   padding: 0 0 40px 0;
   border-top: 1px solid #f8f8f8;
+  &--main{
+    max-width: 343px;
+    margin: 0 auto;
+  }
 }
 .new_user{
   max-width: 320px;
@@ -32,13 +36,13 @@
 .field{  
   width: 100%;
   height: 30px;
-  margin: 40px 0 0;
+  margin: 40px 10px 0;
   &__box{
     width: calc(100% - 32px);
     margin: 8px 0 0;
     padding-left: 10px;
     font-size: 16px;
-    height: 28px;
+    height: 35px;
   }
   &__boxmin{
     width: calc(50% - 20px);
@@ -46,14 +50,13 @@
     margin-right: 8px;
     padding-left: 10px;
     font-size: 16px;
-    height: 28px;
+    height: 35px;
   }
   &__date-box{
-    width: calc(100% - 50px);
-    margin: 8px 0 0;
-    font-size: 16px;
-    height: 28px;
+    width: 90%;
     display: flex;
+    align-items: center;
+    margin: 0 10px;
   }
   &__bottom{
     display: block;
@@ -69,19 +72,18 @@
   width: 100%;
   height: 30px;
   display: flex;
+  margin: 0 10px;
   &__boxmin{
-    width: calc(50% - 6px);
+    width: calc(50% - 20px);
     margin: 8px 0 0;
     margin-right: 8px;
     padding-left: 10px;
     font-size: 16px;
-    height: 28px;
+    height: 35px;
     display: inline;
   }
 }
-.year,.month,.day{
-  margin:0 10px;
-}
+
 .actions{
   
   &__box{
@@ -134,6 +136,14 @@
   padding: 0 2px;
   display: inline-block;
 }
+.Aritrarily{
+  background-color: #c0c0c0;
+  color: #ffffff;
+  font-size: 14px;
+  border-radius: 2px;
+  padding: 0 2px;
+  display: inline-block;
+}
 
 .btn-out{
   height: 80px;
@@ -158,4 +168,20 @@
       padding: 20px;
     }
   }
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 7px 30px 7px 10px;
+  line-height: 1.1em;
+  border-radius: 5px;
+  background-repeat: no-repeat;
+  background-size: 12px 10px;
+  background-position: right 10px center;
+  background-color: #fff;
+  height: 35px;
+  width: 100%;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
