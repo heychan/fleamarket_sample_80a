@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     collection do
       get 'buy'
     end
+  end
   devise_scope :users do
     get '/users', to: redirect("/users/sign_up")
   end
