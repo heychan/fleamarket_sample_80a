@@ -9,11 +9,15 @@
       %p.Content__text 最大5枚までアップロードできます
       .Content__Image
         .Content__Image__Form
+          %label{for: "img-file"}
+            %i.fas.fa-camera.fa-2x
+            %p クリックしてファイルをアップロード
           = f.fields_for :item_images do |i|
             = i.file_field :image, multiple: true, class: "Content__Image__Form__tag", id:"img-file"
-            %label{for: "img-file"}
-              %i.fas.fa-camera.fa-2x
-              %p クリックしてファイルをアップロード
+            %input{class:"HiddenField", type: "file", name: "item[images_attributes][1][image]", id: "item_images_attributes_1_image" }
+            %input{class:"HiddenField", type: "file", name: "item[images_attributes][2][image]", id: "item_images_attributes_2_image" }
+            %input{class:"HiddenField", type: "file", name: "item[images_attributes][3][image]", id: "item_images_attributes_3_image" }
+            %input{class:"HiddenField", type: "file", name: "item[images_attributes][4][image]", id: "item_images_attributes_4_image" }
     .Content
       .Content__title
         %label.Content__title__name 商品名
