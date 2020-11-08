@@ -2,7 +2,7 @@
   .TopIcon
     = image_tag '/assets/logo/logo.png', alt: '', class: 'TopIcon__icon'
   .Buy__main
-    .Content
+    .Top__content
       %h2.Style__heading
         購入内容の確認
     .Content
@@ -47,7 +47,7 @@
           岐阜県
           %br/
           hirai
-    .Content
+    .Bottom__content
       .Buy__form
         = form_with do |f|
           = f.submit '購入する', class: 'Buy__form__btn'

@@ -3,8 +3,7 @@
   max-width: 700px;
   margin: 0px auto;
   width: 100%;
-  .Content{
-    border-top: 1px solid rgb(245, 245, 245);
+  .Top__content{
     margin: 0px auto;
     padding: 24px 16px;
     max-width: 375px;
@@ -14,6 +13,12 @@
       font-size: 24px;
       font-weight: 600;
     }
+  }
+  .Content{
+    border-top: 1px solid rgb(245, 245, 245);
+    margin: 0px auto;
+    padding: 24px 16px;
+    max-width: 375px;
     .Item__box{
       display: flex;
       &__image{
@@ -111,6 +116,11 @@
         font-size: 14px;
       }
     }
+  }
+  .Bottom__content{
+    margin: 0px auto;
+    padding: 24px 16px;
+    max-width: 375px;
     .Buy__form{
       &__btn{
         background-color: #3CCACE;
