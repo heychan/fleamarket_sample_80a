@@ -1,0 +1,151 @@
+.Buy__main{
+  background-color: rgb(255, 255, 255);
+  max-width: 700px;
+  margin: 0px auto;
+  width: 100%;
+  .Top__content{
+    margin: 0px auto;
+    padding: 24px 16px;
+    max-width: 375px;
+    .Style__heading{
+      display: block;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+  .Content{
+    border-top: 1px solid rgb(245, 245, 245);
+    margin: 0px auto;
+    padding: 24px 16px;
+    max-width: 375px;
+    .Item__box{
+      display: flex;
+      &__image{
+        -webkit-box-pack: center;
+        justify-content: center;
+        height: 80px;
+        width: 80px;
+        -webkit-box-align: center;
+        align-items: center;
+        .Style__thumbnail{
+          height: 80px;
+          width: 80px;
+          img{
+            height: 100%;
+            object-fit: cover;
+            -webkit-transition-duration: .1s;
+            transition-duration: .1s;
+            -webkit-transition-property: opacity;
+            transition-property: opacity;
+            -webkit-transition-timing-function: ease-in-out;
+            transition-timing-function: ease-in-out;
+            width: 100%;
+          }
+        }
+      }
+      &__detail{
+        width: 100%;
+        margin-left: 16px;
+        &__name{
+          margin-bottom: 8px;
+        }
+        &__price{
+          text-align: right;
+          .tax{
+            font-size: 12px;
+          }
+          .price{
+            font-size: 15px;
+            font-weight: 600;
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+    .Payment{
+      display: flex;
+      font-size: 18px;
+      font-weight: 600;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      align-items: center;
+      margin-bottom: 24px;
+      &__amount{
+        font-size: 24px;
+      }
+    }
+    .Electronic__payment{
+      font-size: 14px;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+    }
+    .Title{
+      display: flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      align-items: center;
+      margin-bottom: 16px;
+      &__neme{
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+    .Payment__method{
+      &__name{
+        font-size: 14px;
+      }
+      &__fee{
+        margin-top: 4px;
+        font-size: 12px;
+      }
+    }
+    .Shipping__address{
+      display: flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      align-items: center;
+      margin-bottom: 16px;
+      &__info{
+        font-size: 14px;
+      }
+    }
+  }
+  .Bottom__content{
+    margin: 0px auto;
+    padding: 24px 16px;
+    max-width: 375px;
+    .Buy__form{
+      &__btn{
+        background-color: #3CCACE;
+        color: #fff;
+        width: 100%;
+        font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+        font-size: 17px;
+        min-height: 48px;
+        padding: 0 24px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        font-weight: 600;
+      }
+    }
+  }
+  a{
+    font-size: 14px;
+    -webkit-align-items: center;
+    align-items: center;
+    color: #0095ee;
+    cursor: pointer;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    line-height: 1.4em;
+    text-decoration: none;
+    word-break: normal;
+  }
+}

@@ -13,7 +13,15 @@ Rails.application.routes.draw do
   end
   root 'items#index'
   resources :users, only: [:show,:destroy]
-  resources :items, only: [:index, :new, :show]
+  resources :items, only: [:index, :new, :show] do
+    # 商品購入確認ページのフロントエンド確認のため仮置き
+    collection do
+      get 'buy'
+    end
+  end
+  devise_scope :users do
+    get '/users', to: redirect("/users/sign_up")
+  end
   resources :card, only: [:new, :show] do
     collection do
       post 'show', to: 'card#show'
