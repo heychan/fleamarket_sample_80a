@@ -1,0 +1,13 @@
+= render "items/pc_header"
+.MyAccountPage
+  .MyAccountPage__header
+
+  .Main-AccountPage
+    .Main-AccountPage__move
+      .Main-AccountPage__move--title
+        %p.newText 登録が完了しました
+      .AccountPage__title 
+        .form_out__upper
+          .form_out__upper__group
+            =link_to "トップへ戻る", root_path, class: 'btn-out'
+= render "items/footer"

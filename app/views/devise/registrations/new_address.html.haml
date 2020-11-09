@@ -1,0 +1,59 @@
+.AccountPage
+  .AccountPage__header
+    = image_tag asset_path('logo/logo.png'), alt: '', class: 'icon'
+
+  .Main-AccountPage
+    .Main-AccountPage__move
+      .Main-AccountPage__move--title
+        %p.newText 商品送付先入力
+      .AccountPage__title
+        = form_with model: @address, url: addresses_path,method: :post, local: true do |f|
+          .AccountPage__title--main
+            .field
+              = f.label "お名前(全角)"
+              %span.Mandatory 必須
+            .fields
+              = f.text_field :last_name, class: "fields__boxmin", placeholder: "例)歩利馬"
+              = f.text_field :first_name, class: "fields__boxmin", placeholder: "例)太郎"
+
+            .field
+              = f.label "お名前カナ(全角)"
+              %span.Mandatory 必須
+            .fields
+              = f.text_field :last_name_furigana, class: "fields__boxmin", placeholder: "例)フリマ"
+              = f.text_field :first_name_furigana, class: "fields__boxmin", placeholder: "例)タロウ"
+
+            .field
+              = f.label "郵便番号"
+              %span.Mandatory 必須
+              = f.text_field :postal_code, class: "field__box", placeholder: "例)1234567 ハイフンなし"
+            %br/
+            .field
+              = f.label "都道府県"
+              %span.Mandatory 必須
+              = f.collection_select(:area_id, Area.all, :id, :name,{include_blank: "選択してください"}, class: "field__box" )
+            %br/
+            .field
+              = f.label "市区町村"
+              %span.Mandatory 必須
+              = f.text_field :city, class: "field__box", placeholder: "例)名古屋市中区"
+            %br/
+            .field
+              = f.label "番地"
+              %span.Mandatory 必須
+              = f.text_field :house_number, class: "field__box", placeholder: "例)中町1-1-1"
+            %br/
+            .field
+              = f.label "部屋番号"
+              %span.Aritrarily 任意
+              = f.text_field :room_number, class: "field__box", placeholder: "例)中山ビル101"
+            %br/
+            .field
+              = f.label "電話"
+              %span.Aritrarily 任意
+              = f.text_field :tel, class: "field__box", placeholder: "例)09012345678"
+            %br/
+            .actions
+              = f.submit "ユーザー登録", class: "actions__box"
+        = render "devise/shared/links"
+  = render 'footer'
