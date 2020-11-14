@@ -1,16 +1,16 @@
 $(function(){
-  $("form").on('change', 'input[type="file"]', function(e) {
-    let //file = e.target.files[0],
-        images = [];
-        index = $('.HiddenField').data('image')
+  $("form").on('change', '.HiddenField', function(e) {
+    let index = $(this).data('id')
+        // index = $('.HiddenField').data('id')
         console.log(index)
-        file = e.target.files[(index)],
-        reader = new FileReader(),
+debugger
+        file = e.target.files[0],
+        reader = new FileReader(file),
         $preview = $(`#item_images_attributes_${index}_image`);
 
-    if(file.type.indexOf("image") < 0){
-      return false;
-    }
+    //  if(file.type.indexOf("image") < 0){
+    //    return false;
+    //  }
     reader.onload = (function(file) {
       return function(e) {
         $preview.empty();
@@ -18,11 +18,11 @@ $(function(){
                   src: e.target.result,
                   width: "150px",
                   class: "preview",
-                  title: file.name
+                  // title: file.name
               }));
       };
     })(file);
-    $('.CameraIcon').css("display" , "none");
+    $(`#CameraIcon--${index}`).css("display" , "none");
     
 
     reader.readAsDataURL(file);
