@@ -28,7 +28,6 @@ $(function(){
   $("#category_select").on("change", function () {
     // 取得した親カテゴリーのvalueをcategoryに代入
     let parentCategory =  $("#category_select").val();
-    console.log(parentCategory)
     // parentCategoryが空でない場合のみAjaxを行う
     if (parentCategory == ""){
       $("#children_categories").remove()
@@ -42,7 +41,6 @@ $(function(){
         dataType: "json",
       })
       .done(function(children){
-        console.log(children)
         let insertHtml = "";
         // 子カテゴリoptionを1つづつ作成
         children.forEach(function(child){
@@ -67,7 +65,6 @@ $(function(){
 
   // 子カテゴリ選択でイベント発火
   $(document).on("change", "#children_categories", function(){
-    console.log("子カテゴリで発火")
     // 取得した子カテゴリのvalueを代入
     let childCategory = $("#children_categories").val();
     if (childCategory == ""){
