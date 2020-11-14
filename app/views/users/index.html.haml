@@ -8,6 +8,7 @@
         %p.newText 本当にログアウトしますか？
       .AccountPage__title 
         .form_out__upper
-          .form_out__upper__group
-            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn-out'
+          = form_with url: destroy_user_session_path, method: :delete, local: true do |f|
+            = f.submit "ログアウト", class: 'btn-default'
+
 = render "items/footer"

@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :last_name_furigana, :first_name_furigana, presence: true, format: { with: VALID_KANA_NAME_REGEX, message: "は全角カナで入力してください" }
 
 
-  has_many :cards
+  has_one :card
   has_many :products
   has_one :address 
 

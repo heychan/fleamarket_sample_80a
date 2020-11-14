@@ -1,0 +1,54 @@
+.Listing
+  .TopIcon
+    = image_tag 'logo/logo.png', alt: '', class: 'TopIcon__icon'
+  .Buy__main
+    .Top__content
+      %h2.Style__heading
+        購入内容の確認
+    .Content
+      .Item__box
+        .Item__box__image
+          .Style__thumbnail
+            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG'
+        .Item__box__detail
+          %p.Item__box__detail__name
+            謎の肉
+          %p.Item__box__detail__price
+            %span.tax
+              送料込み (税込)
+            %span.price
+              ¥18,000
+    .Content
+      .Payment
+        %span
+          支払い金額
+        %span.Payment__amount
+          ¥18,100
+      %label.Electronic__payment
+    .Content
+      .Title
+        %h3.Title__neme
+          支払い方法
+        = link_to '変更する>'
+      .Payment__method
+        %p.Payment__method__name
+          コンビニ/ATM払い
+        %p.Payment__method__fee
+          (手数料¥10000)
+    .Content
+      .Title
+        %h3.Title__neme
+          配送先
+        = link_to '変更する>'
+      .Shipping__address
+        %p.Shipping__address__info
+          〒500-0000
+          %br/
+          岐阜県
+          %br/
+          hirai
+    .Bottom__content
+      .Buy__form
+        = form_with url: pay_purchases_path, method: :post , local: true do |f|
+          = f.submit '購入する', class: 'Buy__form__btn'
+  = render 'devise/registrations/footer'
