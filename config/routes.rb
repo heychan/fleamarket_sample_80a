@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'card/new'
-  get 'card/show'
   get "users/show", to: "users#show"
   get "users/out", to: "users#index"
   get "/mypage", to: "users#mypage"
@@ -27,6 +25,13 @@ Rails.application.routes.draw do
       post 'show', to: 'card#show'
       post 'pay', to: 'card#pay'
       post 'delete', to: 'card#delete'
+    end
+  end
+  resources :purchases, only: [:index] do
+    collection do
+      get 'pay_index', to: 'purchases#pay_index'
+      post 'pay', to: 'purchases#pay'
+      get 'done', to: 'purchases#done'
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

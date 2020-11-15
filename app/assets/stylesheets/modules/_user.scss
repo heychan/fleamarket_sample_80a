@@ -158,16 +158,9 @@
 .form_out{
   &__upper{
     margin: 0 auto;
+    margin-top: 50px;
     max-width: 300px;
-
-    &__group{
-      font-size: 20px;
-      margin-top: 30px;
-      background-color: #3CCACE;
-      text-align: center;
-      padding: 20px;
     }
-  }
 }
 select {
   -webkit-appearance: none;
@@ -184,4 +177,9 @@ select {
   width: 100%;
   margin-bottom: 10px;
   cursor: pointer;
+}
+
+.card-message{
+  text-align: center;
+  margin: 20px;
 }
