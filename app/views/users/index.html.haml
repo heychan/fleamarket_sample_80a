@@ -1,0 +1,13 @@
+= render "items/pc_header"
+.MyAccountPage
+  .MyAccountPage__header
+
+  .Main-AccountPage
+    .Main-AccountPage__move
+      .Main-AccountPage__move--title
+        %p.newText 本当にログアウトしますか？
+      .AccountPage__title 
+        .form_out__upper
+          .form_out__upper__group
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn-out'
+= render "items/footer"
