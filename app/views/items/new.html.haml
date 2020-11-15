@@ -6,25 +6,26 @@
       .Content__title
         %label.Content__title__name 出品画像
         %span.Content__title__Atag 必須
-        //%p.Content__text 最大5枚までアップロードできます
-      = f.fields_for :item_images do |i|
-        .Content__Field
-          .Content__Field__Image
-            = i.file_field :image, multiple: true, class: "HiddenField", id: "item_images_attributes_0_image", 'data-id': 0
-            %label{for: "item_images_attributes_0_image", class: "LabelBox", id: "LabelBox--0"}
-              = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--0'
-          .Content__Field__Image
-            %input{class:"HiddenField", type: "file", id: "item_images_attributes_1_image", 'data-id': 1 }
-            %label{for: "item_images_attributes_1_image", class: "LabelBox", id: "LabelBox--1"}
-              = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--1'
-          .Content__Field__Image
-            %input{class:"HiddenField", type: "file", name: "item[images_attributes][2][image]", id: "item_images_attributes_2_image", 'data-id': 2 }
-            %label{for: "item_images_attributes_2_image", class: "LabelBox", id: "LabelBox--2"}
-              = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--2'
-          .Content__Field__Image
-            %input{class:"HiddenField", type: "file", name: "item[images_attributes][3][image]", id: "item_images_attributes_3_image",'data-id': 3 }
-            %label{for: "item_images_attributes_3_image", class: "LabelBox", id: "LabelBox--3"}
-              = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--3'
+      .Content__Field
+        = f.fields_for :item_images do |i|
+          #image-box
+            .js-file_group{data: {index: "#{i.index}"}}
+              = i.file_field :image, class: "js-file"
+              %span.js-remove 削除
+        -#     %label{for: "item_images_attributes_0_image", class: "LabelBox", id: "LabelBox--0"}
+        -#       = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--0'
+        -#   .Content__Field__Image
+        -#     %input{class:"HiddenField", type: "file", id: "item_images_attributes_1_image", 'data-id': 1 }
+        -#     %label{for: "item_images_attributes_1_image", class: "LabelBox", id: "LabelBox--1"}
+        -#       = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--1'
+        -#   .Content__Field__Image
+        -#     %input{class:"HiddenField", type: "file", name: "item[images_attributes][2][image]", id: "item_images_attributes_2_image", 'data-id': 2 }
+        -#     %label{for: "item_images_attributes_2_image", class: "LabelBox", id: "LabelBox--2"}
+        -#       = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--2'
+        -#   .Content__Field__Image
+        -#     %input{class:"HiddenField", type: "file", name: "item[images_attributes][3][image]", id: "item_images_attributes_3_image",'data-id': 3 }
+        -#     %label{for: "item_images_attributes_3_image", class: "LabelBox", id: "LabelBox--3"}
+        -#       = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--3'
     .Content
       .Content__title
         %label.Content__title__name 商品名
