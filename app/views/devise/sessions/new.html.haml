@@ -1,6 +1,7 @@
 .AccountPage
   .AccountPage__header
-    = image_tag asset_path('logo/logo.png'), alt: '', class: 'icon'
+    = link_to '/', class:'' do
+      = image_tag asset_path('logo/logo.png'), alt: '', class: 'icon'
 
   .Main-AccountPage
     .Main-AccountPage__move
