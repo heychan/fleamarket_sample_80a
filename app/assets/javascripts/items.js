@@ -17,9 +17,9 @@ $(document).on('turbolinks:load', ()=> {
 
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  console.log(fileIndex[0]-1)
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
-  console.log(lastIndex)
   fileIndex.splice(0, lastIndex);
 
   $('.hidden-destroy').hide();
@@ -28,6 +28,7 @@ $(document).on('turbolinks:load', ()=> {
     // const targetIndex = $(this).parent().data('index');
     const targetIndex = $(this).parent().data('index');
     console.log(this)
+    $('label').attr('for', `item_item_images_attributes_${targetIndex+1}_image`);
     // $(`#item_item_images_attributes_${targetIndex}_image`).trigger("click")
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
@@ -45,6 +46,24 @@ $(document).on('turbolinks:load', ()=> {
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
   });
+
+
+  // $(document).on("click", '#item_item_images_attributes_0_image', function(){
+  //   $('label').attr('for', 'item_item_images_attributes_1_image');
+  // })
+  // $(document).on("click", '#item_item_images_attributes_1_image', function(){
+  //   $('label').attr('for', 'item_item_images_attributes_2_image');
+  // })
+  // $(document).on("click", '#item_item_images_attributes_2_image', function(){
+  //   $('label').attr('for', 'item_item_images_attributes_3_image');
+  // })
+  // $(document).on("click", '#item_item_images_attributes_3_image', function(){
+  //   $('label').attr('for', 'item_item_images_attributes_4_image');
+  // })
+  // $(document).on("click", '#item_item_images_attributes_4_image', function(){
+  //   $('label').attr('for', 'item_item_images_attributes_5_image');
+  // })
+
 
   $('#image-box').on('click', '.js-remove', function() {
     const targetIndex = $(this).parent().data('index');
