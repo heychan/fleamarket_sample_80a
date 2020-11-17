@@ -7,11 +7,27 @@
         %label.Content__title__name 出品画像
         %span.Content__title__Atag 必須
       .Content__Field
-        = f.fields_for :item_images do |i|
-          #image-box
-            .js-file_group{data: {index: "#{i.index}"}}
-              = i.file_field :image, class: "js-file"
+        #image-box
+          #previews
+            - if @item.persisted?
+              - @item.item_images.each_with_index do |image, i|
+                = image_tag image.src.url, data: { index: i }, width: "100", height: '100'
+            .item-num-0#image-box__container
+              %label{for: "item_item_images_attributes_#{@item.item_images.count}_image"}
+                %i.fas.fa-camera#image-box-icon
+            = f.fields_for :item_images do |i|
+              .js-file_group{data: {index: "#{i.index}"}}
+                = i.file_field :image, class: "js-file"           
               %span.js-remove 削除
+            - if @item.persisted?
+              = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+          - if @item.persisted?
+            .js-file_group{data: {index: "#{@item.item_images.count}"}}
+              = file_field_tag :image, name: "item[item_images_attributes][#{@item.item_images.count}][image]", class: 'js-file'
+              .js-remove 削除
+
+
+          
         -#     %label{for: "item_images_attributes_0_image", class: "LabelBox", id: "LabelBox--0"}
         -#       = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--0'
         -#   .Content__Field__Image
