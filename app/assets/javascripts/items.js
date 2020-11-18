@@ -1,20 +1,20 @@
 $(document).on('turbolinks:load', ()=> {
   // 画像用のinputを生成する関数
   const buildFileField = (num)=> {
-    const html = `<div data-index="${num}" class="js-file_group">
-                    <input class="js-file" type="file"
+    const html = `<div data-index="${num}" class="JsFile__Group">
+                    <input class="JsFile" type="file"
                     name="item[item_images_attributes][${num}][image]"
                     id="item_item_images_attributes_${num}_image"><br>
-                    <div class="js-remove">削除</div>
+                    <div class="JsRemove">削除</div>
                   </div>`;
     return html;
   }
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
     const html = `<div class="Content__Field>
-                    <div class="js-file">
+                    <div class="JsFile">
                       <img data-index="${index}" src="${url}" >
-                    <div class="js-remove">削除</div>`;
+                    <div class="JsRemove">削除</div>`;
     return html;
   }
 
@@ -22,12 +22,12 @@ $(document).on('turbolinks:load', ()=> {
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
   console.log(fileIndex[0]-1)
   // 既に使われているindexを除外
-  lastIndex = $('.js-file_group:last').data('index');
+  lastIndex = $('.JsFile__Group:last').data('index');
   fileIndex.splice(0, lastIndex);
 
   $('.hidden-destroy').hide();
 
-  $('.Content__Field__Image').on('change', '.js-file', function(e) {
+  $('.Content__Field__Image').on('change', '.JsFile', function(e) {
     // const targetIndex = $(this).parent().data('index');
     const targetIndex = $(this).parent().data('index');
     console.log(this)
@@ -48,7 +48,7 @@ $(document).on('turbolinks:load', ()=> {
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
-    var count = $('.js-file').length;
+    var count = $('.JsFile').length;
       //プレビューが5あるときは、カメラアイコンを消しておく
       if (count == 5) {
         $('#CameraIcon').css('display', 'none');
@@ -73,7 +73,7 @@ $(document).on('turbolinks:load', ()=> {
   // })
 
 
-  $('.Content__Field__Image').on('click', '.js-remove', function() {
+  $('.Content__Field__Image').on('click', '.JsRemove', function() {
     const targetIndex = $(this).parent().data('index');
     // 該当indexを振られているチェックボックスを取得する
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
@@ -84,6 +84,6 @@ $(document).on('turbolinks:load', ()=> {
     $(`img[data-index="${targetIndex}"]`).remove();
 
     // 画像入力欄が0個にならないようにしておく
-    if ($('.js-file').length == 0) $('.Content__Field__Image').append(buildFileField(fileIndex[0]));
+    if ($('.JsFile').length == 0) $('.Content__Field__Image').append(buildFileField(fileIndex[0]));
   });
 });
