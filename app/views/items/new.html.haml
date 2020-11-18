@@ -7,19 +7,18 @@
         %label.Content__title__name 出品画像
         %span.Content__title__Atag 必須
       .Content__Field
-        #image-box
-          #previews
+        .Content__Field__Image
+          .Content__Field__Previews
             - if @item.persisted?
-              - @item.item_images.each_with_index do |image, i|
-                = image_tag image.src.url, data: { index: i }, width: "100", height: '100'
-            .item-num-0#image-box__container 
-              -# %label(for="item_item_images_attributes_#{@item.item_images.count}_image")
-              %label{for: "item_item_images_attributes_0_image"}
-                %i.fas.fa-camera#image-box-icon
+              - @item.item_images.each_with_index do |image, i| 
+                = image_tag image.src.url, data: { index: i }, width: "146", height: '146'
+          .Content__Field__label 
+            %label{for: "item_item_images_attributes_0_image"}
+              %i.fas.fa-camera.fa-2x#CameraIcon
             = f.fields_for :item_images do |i|
               .js-file_group{data: {index: "#{i.index}"}}
                 = i.file_field :image, class: "js-file"           
-              %span.js-remove 削除
+                %span.js-remove 削除
             - if @item.persisted?
               = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
           - if @item.persisted?

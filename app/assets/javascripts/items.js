@@ -11,7 +11,10 @@ $(document).on('turbolinks:load', ()=> {
   }
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
-    const html = `<img data-index="${index}" src="${url}" width="100px" height="100px">`;
+    const html = `<div class="Content__Field>
+                    <div class="js-file">
+                      <img data-index="${index}" src="${url}" >
+                    <div class="js-remove">削除</div>`;
     return html;
   }
 
@@ -24,7 +27,7 @@ $(document).on('turbolinks:load', ()=> {
 
   $('.hidden-destroy').hide();
 
-  $('#image-box').on('change', '.js-file', function(e) {
+  $('.Content__Field__Image').on('change', '.js-file', function(e) {
     // const targetIndex = $(this).parent().data('index');
     const targetIndex = $(this).parent().data('index');
     console.log(this)
@@ -38,13 +41,18 @@ $(document).on('turbolinks:load', ()=> {
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {  // 新規画像追加の処理
-      $('#previews').append(buildImg(targetIndex, blobUrl));
+      $('.Content__Field__Previews').append(buildImg(targetIndex, blobUrl));
       // fileIndexの先頭の数字を使ってinputを作る
-      $('#image-box').append(buildFileField(fileIndex[0]));
+      $('.Content__Field__Image').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
+    var count = $('.js-file').length;
+      //プレビューが5あるときは、カメラアイコンを消しておく
+      if (count == 5) {
+        $('#CameraIcon').css('display', 'none');
+      }
   });
 
 
@@ -65,7 +73,7 @@ $(document).on('turbolinks:load', ()=> {
   // })
 
 
-  $('#image-box').on('click', '.js-remove', function() {
+  $('.Content__Field__Image').on('click', '.js-remove', function() {
     const targetIndex = $(this).parent().data('index');
     // 該当indexを振られているチェックボックスを取得する
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
@@ -76,6 +84,6 @@ $(document).on('turbolinks:load', ()=> {
     $(`img[data-index="${targetIndex}"]`).remove();
 
     // 画像入力欄が0個にならないようにしておく
-    if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+    if ($('.js-file').length == 0) $('.Content__Field__Image').append(buildFileField(fileIndex[0]));
   });
 });
