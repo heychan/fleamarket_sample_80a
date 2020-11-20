@@ -69,6 +69,9 @@
       &__Previews {
         display: flex;
       }
+      // &__Previews2 {
+        
+      // }
     }
     img {
       margin: 0 2px;
@@ -88,6 +91,7 @@
       color: #3ccace;
       font-family: sans-serif;
       margin: 0 2px;
+      border: 1px solid #dcdcdc;
     }
 
     &__AField {

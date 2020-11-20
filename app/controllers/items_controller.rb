@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
+  before_action :set_category, only:[:create]
   def index
   end
 
@@ -23,10 +24,13 @@ class ItemsController < ApplicationController
   end
   def create
     @item = Item.new(item_params)
+    # binding.pry
     if @item.save
       redirect_to root_path
-    else
-      render :new
+    else  
+    @item.valid?
+    flash.now[:alert] = @item.errors.full_messages
+    render :new and return
     end
   end
 
@@ -63,5 +67,9 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_category
+    @parents = Category.where(ancestry: nil)
   end
 end

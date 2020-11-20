@@ -48,30 +48,12 @@ $(document).on('turbolinks:load', ()=> {
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
-    var count = $('.JsFile').length;
+    let count = $('.JsFile').length;
       //プレビューが5あるときは、カメラアイコンを消しておく
       if (count == 5) {
         $('#CameraIcon').css('display', 'none');
       }
   });
-
-
-  // $(document).on("click", '#item_item_images_attributes_0_image', function(){
-  //   $('label').attr('for', 'item_item_images_attributes_1_image');
-  // })
-  // $(document).on("click", '#item_item_images_attributes_1_image', function(){
-  //   $('label').attr('for', 'item_item_images_attributes_2_image');
-  // })
-  // $(document).on("click", '#item_item_images_attributes_2_image', function(){
-  //   $('label').attr('for', 'item_item_images_attributes_3_image');
-  // })
-  // $(document).on("click", '#item_item_images_attributes_3_image', function(){
-  //   $('label').attr('for', 'item_item_images_attributes_4_image');
-  // })
-  // $(document).on("click", '#item_item_images_attributes_4_image', function(){
-  //   $('label').attr('for', 'item_item_images_attributes_5_image');
-  // })
-
 
   $('.Content__Field__Image').on('click', '.JsRemove', function() {
     const targetIndex = $(this).parent().data('index');
@@ -85,5 +67,7 @@ $(document).on('turbolinks:load', ()=> {
 
     // 画像入力欄が0個にならないようにしておく
     if ($('.JsFile').length == 0) $('.Content__Field__Image').append(buildFileField(fileIndex[0]));
+  
+      $('#CameraIcon').css('display', 'block');
   });
 });
