@@ -226,3 +226,25 @@
     }
   }
 }
+
+.Purchase__content{
+  margin: 0px auto;
+  padding: 0 16px 30px;
+  max-width: 375px;
+  .Purchase__form{
+    &__btn{
+      background-color: #3CCACE;
+      color: #fff;
+      width: 100%;
+      font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+      font-size: 17px;
+      min-height: 48px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

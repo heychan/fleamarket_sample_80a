@@ -30,11 +30,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-  end
-
-# 商品購入確認ページのフロントエンド確認のため仮置き
-  def buy
-
+    @item = Item.find(params[:id])
+    #find_byでitemがあるかないかあったら@purchaseにいれる
+    @purchase = Purchase.find_by(item_id: @item.id)
   end
 
   def done

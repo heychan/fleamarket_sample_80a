@@ -28,6 +28,20 @@
           .Item__box__price--detail
             %span (税込)
             %span 送料込み
+        - if user_signed_in? && (current_user.id == @item.user_id)
+          .Purchase__content
+            .Purchase__form
+              .Purchase__form__btn あなたが出品した商品です
+        - else
+          - if @purchase.present?
+            .Purchase__content
+              .Purchase__form
+                .Purchase__form__btn SOLD OUT
+          - else
+            .Purchase__content
+              .Purchase__form
+                = form_with url: pay_index_purchase_url(@item), method: :get , local: true do |f|
+                  = f.submit '購入画面に進む', class: 'Purchase__form__btn'
         .Item__detail 　幼時から父は、私によく、金閣のことを語った。私の生れたのは、舞鶴から東北の、日本海へ突き出たうらさびしい岬である。父の故郷はそこではなく、舞鶴東郊の志楽(しらく)である。懇望されて、僧籍に入り、辺鄙な岬の寺の住職になり、その地で妻をもらって、私という子を設けた。
         .Table
           %table
@@ -91,7 +105,7 @@
           =link_to item_path(2) do
             %figure.ProductList__img
               = image_tag src= "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG"
-            .ProductList__body
+            .PurchaspList__body
               %h3.name test
               .details
                 %ul

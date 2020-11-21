@@ -1,13 +1,13 @@
 class PurchasesController < ApplicationController
   require 'payjp'
   before_action :set_card, only: [:pay_index, :pay]
-  before_action :set_product
+  before_action :set_item
 
   def pay_index
-    # @top_image = @product.images.first
+    # @top_image = @item.images.first
     @card = @set_card.first
     if @card.blank?
-      redirect_to controller: "cards", action: "new"
+      redirect_to controller: "card", action: "new"
     else
       Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_PRIVATE_KEY]
       customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -19,16 +19,16 @@ class PurchasesController < ApplicationController
     @card = @set_card.first
     Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_PRIVATE_KEY]
     Payjp::Charge.create(
-    amount: 300,
+    amount: @item.price,
     customer: @card.customer_id,
     currency: 'jpy'
   )
-  # redirect_to action: 'done', product_id: @product
+  redirect_to action: 'done', item_id: @item
   end
 
   def done
-    @top_image = @product.images.first
-    Transaction.create(product_id: @product.id, user_id: current_user.id)
+    # @top_image = @item.images.first
+    Purchase.create(item_id: @item.id, user_id: current_user.id)
   end
 
   private
@@ -37,7 +37,7 @@ class PurchasesController < ApplicationController
     @set_card = Card.where(user_id: current_user.id)
   end
 
-  def set_product
-    # @product = Product.find(params[:product_id])
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
