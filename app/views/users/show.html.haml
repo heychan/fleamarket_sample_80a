@@ -3,17 +3,119 @@
 -# -else
 -#   %h1ユーザーページ
 = render "items/pc_header"
-.MyAccountPage
-  .MyAccountPage__header
+-# .MyAccountPage
+  -# .MyAccountPage__header
 
-  .UserIntroduction
-    .UserIntroduction__main
-      .UserIntroduction__main--name
-        = @user.nickname
-    %p.Separation 設定
-    .UserIntroduction__function
-      .UserIntroduction__function--box
-        = link_to "ログアウト", users_out_path, class: "link-box"
-      .UserIntroduction__function--box
-        = link_to "クレジットカード登録", new_card_path, class: "link-box"
+  -# .UserIntroduction
+  -#   .UserIntroduction__main
+  -#     .UserIntroduction__main--name
+  -#       = @user.nickname
+  -#   %p.Separation 設定
+  -#   .UserIntroduction__function
+  -#     .UserIntroduction__function--box
+  -#       = link_to "ログアウト", users_out_path, class: "link-dobox"
+  -#     .UserIntroduction__function--box
+  -#       = link_to "クレジットカード登録", new_card_path, class: "link-dobox"
+.body
+  .l-container
+    .l-side
+      %nav.mypage-nav
+        %ul.mypage-nav-list
+          %li
+            = link_to 'マイページ', user_path(current_user.id), class:'mypage-nav-list-item'
+          %li
+            = link_to 'お知らせ', '/', class:'mypage-nav-list-item'
+          %li
+            = link_to 'やることリスト', '/', class:'mypage-nav-list-item'
+          %li
+            = link_to 'いいね！一覧', '/', class:'mypage-nav-list-item'
+          %li
+            = link_to '出品する', '/', class:'mypage-nav-list-item'
+          %li
+            = link_to '下書き一覧', '/', class:'mypage-nav-list-item'
+          %li
+        .title 設定
+        %ul.mypage-nav-list 
+          %li
+            = link_to "ログアウト", users_out_path, class:'mypage-nav-list-item'
+          %li
+            = link_to "クレジットカード登録", new_card_path, class:'mypage-nav-list-item'
+
+    .l-content
+      .mypage-user-icon
+        = image_tag 'icon/member_photo_noimage_thumb.png', alt: '', class: 'icon'
+        .nickname
+          = @user.nickname
+      .mypage-tab-container-notification-todo
+        %ul.mypage-tabs
+          %li.active
+            %h3
+              = link_to 'お知らせ', '/', class:'mypage-tab'
+          %li
+            %h3
+              = link_to 'やることリスト', '/', class:'mypage-tab'
+        .tab-content
+          %ul.mypage-item-list.active
+            %li
+              = link_to '/', class:'mypage-item-link'do
+                %figure
+                  = image_tag 'logo/logo.png', alt: '', class: ' lazyloaded'
+                .mypage-item-body
+                  .mypage-item-text 事務局から個別メッセージ「ログイン通知」
+            %li
+              = link_to '/', class:'mypage-item-link'do
+                %figure
+                  = image_tag 'logo/logo.png', alt: '', class: ' lazyloaded'
+                .mypage-item-body
+                  .mypage-item-text 明日、P500還元クーポンの有効期限が切れます！タップして詳細を確認しましょう。
+            %li
+              = link_to '/', class:'mypage-item-link'do
+                %figure
+                  = image_tag 'logo/logo.png', alt: '', class: ' lazyloaded'
+                .mypage-item-body
+                  .mypage-item-text 《売上金が最大2倍に！？》さらに、ゆうパケットポスト初利用なら配送料実質無料♪
+            %li
+              = link_to '/', class:'mypage-item-link'do
+                %figure
+                  = image_tag 'logo/logo.png', alt: '', class: ' lazyloaded'
+                .mypage-item-body
+                  .mypage-item-text 【見逃さないで！】購入も出品もしなくてOK！必ずP500もらえる！
+            %li
+              = link_to '/', class:'mypage-item-link'do
+                %figure
+                  = image_tag 'logo/logo.png', alt: '', class: ' lazyloaded'
+                .mypage-item-body
+                  .mypage-item-text 3日後、P500還元クーポンの有効期限が切れます！タップして詳細を確認しましょう。
+          %ul.mypage-item-list
+            %li
+              = link_to '/', class:'mypage-item-link'do
+                %figure
+                  = image_tag 'logo/logo.png', alt: '', class: ' lazyloaded'
+                .mypage-item-body
+                  .mypage-item-text 事務局から個別メッセージ「ログイン通知」
+            %li
+              = link_to '/', class:'mypage-item-link'do
+                %figure
+                  = image_tag 'logo/logo.png', alt: '', class: ' lazyloaded'
+                .mypage-item-body
+                  .mypage-item-text 明日、P500還元クーポンの有効期限が切れます！タップして詳細を確認しましょう。
+            %li
+              = link_to '/', class:'mypage-item-link'do
+                %figure
+                  = image_tag 'logo/logo.png', alt: '', class: ' lazyloaded'
+                .mypage-item-body
+                  .mypage-item-text 
+            %li
+              = link_to '/', class:'mypage-item-link'do
+                %figure
+                  = image_tag 'logo/logo.png', alt: '', class: ' lazyloaded'
+                .mypage-item-body
+                  .mypage-item-text 
+            %li
+              = link_to '/', class:'mypage-item-link'do
+                %figure
+                  = image_tag 'logo/logo.png', alt: '', class: ' lazyloaded'
+                .mypage-item-body
+                  .mypage-item-text 【見逃さないで！】購入も出品もしなくてOK！必ずP500もらえる！
+      -# .mypage-tab-container
 = render "items/footer"

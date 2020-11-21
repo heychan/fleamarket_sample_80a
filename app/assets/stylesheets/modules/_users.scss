@@ -1,44 +1,161 @@
-.MyAccountPage {
-  min-height: calc(100vh - 400px);
-  background-color: #f8f8f8;
-  &__header{
-    text-align: center;
-    padding: 40px;
-  }
-}
-.UserIntroduction{
-  width: 100%;
-  &__main{
-    width: calc(100% - 400px);
-    height: 300px;
-    margin: auto;
-    background-image: image-url("pict/bg-appBanner-pict.jpg");
-    background-size: cover;
-    &--name{
-      font-size: 30px;
-      text-align: center;
-      padding-top: 150px;
-      color: #fff;
-      text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    }
-  }
-  &__function{
-    width: calc(100% - 400px);
-    margin: auto;
-    background-color: #fff;
+// .MyAccountPage {
+//   min-height: calc(100vh - 400px);
+//   background-color: #f8f8f8;
+//   &__header{
+//     text-align: center;
+//     padding: 40px;
+//   }
+// }
+// .UserIntroduction{
+//   width: 100%;
+//   &__main{
+//     width: calc(100% - 400px);
+//     height: 300px;
+//     margin: auto;
+//     background-image: image-url("pict/bg-appBanner-pict.jpg");
+//     background-size: cover;
+//     &--name{
+//       font-size: 30px;
+//       text-align: center;
+//       padding-top: 150px;
+//       color: #fff;
+//       text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+//     }
+//   }
+//   &__function{
+//     width: calc(100% - 400px);
+//     margin: auto;
+//     background-color: #fff;
     
-    &--box{
-      border: 2px solid #f8f8f8;
-      padding: 8px;
-    }
-.link-box{
-  text-decoration: none;
-  color: #1a1a1a;
-}
+//     &--box{
+//       border: 2px solid #f8f8f8;
+//       padding: 8px;
+//     }
+// .link-box{
+//   text-decoration: none;
+//   color: #1a1a1a;
+// }
 
+//   }
+// }
+// .Separation{
+//   margin: 30px 0 0 200px;
+//   font-size: 23px;
+// }
+.body{
+  background-color: gainsboro;
+  padding: 30px 0px;
+  .l-container{
+    margin: 0 auto;
+    width: 1020px;
+    display: flex;
+    font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+    .l-side{
+      width: 280px;
+      margin: 0 40px 0 0;
+      .mypage-nav-list{
+        margin-bottom: 20px;
+        &-item {
+          position: relative;
+          display: block;
+          min-height: 48px;
+          padding: 16px;
+          background: #fff;
+          font-size: 14px;
+          color: #333;
+          border-bottom: 1px solid #eee;
+        }
+      }
+      .title{
+        font-weight: bold;
+      }
+    }
+    .l-content{
+      width: 700px;
+      .mypage-user-icon{
+        height: 200px;
+        position: relative;
+        background: url("pict/bg-topMiddleDl-pict.jpg");
+        background-size: cover;
+        text-align: center;
+        .icon{
+          margin-top: 50px;
+          width: 60px;
+          height: 60px;
+        }
+        .nickname{
+          font-weight: bold;
+          font-size: 25px;
+        }
+      }
+      .mypage-tab-container-notification-todo{
+        background: #fff;
+        .mypage-tabs{
+          background: #eee;
+          display: flex;
+          height: 60px;
+          margin-top: 10px;
+          li{
+            width: 50%;
+            text-align: center;
+            padding: 20px;
+            .mypage-tab{
+              font-weight: bold;
+            }
+          }
+          .active{
+            background: #fff;
+          }
+          :not(.active):hover{
+            opacity: 0.5;
+            transition: .8s;
+          }
+        }
+        .tab-content{
+          .mypage-item-list.active{
+            display: block;
+            li{
+              border-bottom: 1px solid #eee;
+              .mypage-item-link{
+                display: flex;
+                align-items: center;
+                figure{
+                  position: relative;
+                  overflow: hidden;
+                  width: 48px;
+                  height: 48px;
+                  .lazyloaded{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 1;
+                    width: 100%;
+                    padding-top: 18px;
+                  }
+                }
+                .mypage-item-body{
+                  flex: 1;
+                  margin: 0 40px 0 20px;
+                  overflow: hidden;
+                }
+              }
+            }
+          }
+          .mypage-item-list{
+            display: none;
+          }
+        }
+      }
+      // .mypage-tab-container{
+      //   margin: 40px 0 0;
+      //   background: #fff;
+      // }
+    }
   }
 }
-.Separation{
-  margin: 30px 0 0 200px;
-  font-size: 23px;
+a{
+  text-decoration: none;
+  color: #333;
 }
