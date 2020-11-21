@@ -1,8 +1,11 @@
 .Listing
   .TopIcon
     = image_tag src='/assets/logo/logo.png', alt: '', class: 'TopIcon__icon'
-  = form_for @item, method: :post, local: true do |f|
+  = form_for @item, method: :post, local: true do |f| 
     .Content
+      - if f.object.errors.full_messages.length != 0
+        -# エラーの変数を定義して部分テンプレート呼び出し
+        = render partial: 'layouts/error_messages', locals: {errors: f.object.errors.full_messages}
       .Content__title
         %label.Content__title__name 出品画像
         %span.Content__title__Atag 必須
@@ -47,20 +50,20 @@
       .Content__title
         %label.Content__title__name 商品の状態
         %span.Content__title__Atag 必須
-      = f.collection_select(:condition_id, Condition.all, :id, :name,{include_blank: "選択してください"}, class: "Content__AField" )
+      = f.collection_select(:condition_id, Condition.all, :id, :name,{prompt: "選択してください"}, class: "Content__AField" )
     .Content
       .Content__title
         %label.Content__title__name 配送料の負担
         %span.Content__title__Atag 必須
-      = f.collection_select(:shipping_cost_id, ShippingCost.all, :id, :status,{include_blank: " 選択してください"}, class: "Content__AField" )
+      = f.collection_select(:shipping_cost_id, ShippingCost.all, :id, :status,{prompt: " 選択してください"}, class: "Content__AField" )
       .Content__title
         %label.Content__title__name 発送元の地域
         %span.Content__title__Atag 必須
-      = f.collection_select(:area_id, Area.all, :id, :name,{include_blank: "選択してください"}, class: "Content__AField" )
+      = f.collection_select(:area_id, Area.all, :id, :name,{prompt: "選択してください"}, class: "Content__AField" )
       .Content__title
         %label.Content__title__name 発送までの日数
         %span.Content__title__Atag 必須
-      = f.collection_select(:day_id, Day.all, :id, :day,{include_blank: "選択してください"}, class: "Content__AField" )
+      = f.collection_select(:day_id, Day.all, :id, :day,{prompt: "選択してください"}, class: "Content__AField" )
     .Content
       .Content__title
         %label.Content__title__name 販売価格
@@ -69,5 +72,5 @@
     .Send
       = f.submit '出品する', class: 'Send__ABtn'
       .ReturnBtn
-        = link_to'もどる'
+        = link_to'もどる', items_path
     = render 'devise/registrations/footer'
