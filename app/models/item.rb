@@ -4,4 +4,5 @@ class Item < ApplicationRecord
   validates :item_images, presence: true
 
   belongs_to :category
+  has_one :purchase
 end

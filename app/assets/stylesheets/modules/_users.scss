@@ -1,11 +1,11 @@
-// .MyAccountPage {
-//   min-height: calc(100vh - 400px);
-//   background-color: #f8f8f8;
-//   &__header{
-//     text-align: center;
-//     padding: 40px;
-//   }
-// }
+.MyAccountPage {
+  min-height: calc(100vh - 400px);
+  background-color: #f8f8f8;
+  &__header{
+    text-align: center;
+    padding: 40px;
+  }
+}
 // .UserIntroduction{
 //   width: 100%;
 //   &__main{
@@ -45,6 +45,7 @@
 .body{
   background-color: gainsboro;
   padding: 30px 0px;
+  height: calc(100vh - 400px);
   .l-container{
     margin: 0 auto;
     width: 1020px;
