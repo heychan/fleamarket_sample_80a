@@ -34,6 +34,7 @@
   .Footer__logo
     = link_to('#', class: 'Footer__logo__btn') do
       = image_tag 'logo/logo-white.png', alt: '', class: 'Btn--image'
+
 = link_to(new_item_path, data: {turbolinks: false}) do
   .PurchaseBtn
     %span.PurchaseBtn__text 出品する
