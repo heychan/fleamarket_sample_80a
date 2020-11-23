@@ -27,7 +27,6 @@ $(document).on('turbolinks:load', ()=> {
   $('.hidden-destroy').hide();
 
   $('.Content__Field__Image').on('change', '.JsFile', function(e) {
-    // const targetIndex = $(this).parent().data('index');
     const targetIndex = $(this).parent().data('index');
     $('label').attr('for', `item_item_images_attributes_${targetIndex+1}_image`);
     // ファイルのブラウザ上でのURLを取得する
