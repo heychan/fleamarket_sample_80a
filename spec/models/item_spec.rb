@@ -67,6 +67,7 @@ describe Item do
       expect(item.errors[:price]).to include("は数値で入力してください")
     end
   end
+  
   describe "#文字数" do
     it "nameが40文字でも登録できること" do
       item = build(:item, name: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
@@ -94,7 +95,6 @@ describe Item do
 
     it "priceが9999999だと登録できる" do
       item = build(:item, price: "9999999")
- 
       expect(item).to be_valid
     end
 

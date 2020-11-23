@@ -20,7 +20,6 @@ $(document).on('turbolinks:load', ()=> {
 
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
-  console.log(fileIndex[0]-1)
   // 既に使われているindexを除外
   lastIndex = $('.JsFile__Group:last').data('index');
   fileIndex.splice(0, lastIndex);
@@ -30,9 +29,7 @@ $(document).on('turbolinks:load', ()=> {
   $('.Content__Field__Image').on('change', '.JsFile', function(e) {
     // const targetIndex = $(this).parent().data('index');
     const targetIndex = $(this).parent().data('index');
-    console.log(this)
     $('label').attr('for', `item_item_images_attributes_${targetIndex+1}_image`);
-    // $(`#item_item_images_attributes_${targetIndex}_image`).trigger("click")
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);

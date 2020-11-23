@@ -48,11 +48,8 @@
       margin: 0 0 5px 10px;
     }
     &__Field {
-      //background-color: #dcdcdc;
-      // height: 200px;
       width: 600px;
       border-radius: 5px;
-      //margin: 0 2px;
       &__Image {
         display: flex;
         justify-content: center;
@@ -69,9 +66,6 @@
       &__Previews {
         display: flex;
       }
-      // &__Previews2 {
-        
-      // }
     }
     img {
       margin: 0 2px;
