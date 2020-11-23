@@ -9,5 +9,6 @@
       .AccountPage__title 
         .form_out__upper
           .form_out__upper__group
-            =link_to "トップへ戻る", root_path, class: 'btn-out'
+            = form_with url: root_path, method: :get, local: true do |f|
+              = f.submit "トップへ戻る", class: 'btn-default'
 = render "items/footer"
