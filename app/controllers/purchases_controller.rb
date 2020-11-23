@@ -5,6 +5,7 @@ class PurchasesController < ApplicationController
 
   def pay_index
     # @top_image = @item.images.first
+    @address =Address.find(current_user.id)
     @card = @set_card.first
     if @card.blank?
       redirect_to controller: "card", action: "new"
