@@ -16,15 +16,13 @@ FactoryBot.define do
     association :category
     association :user
    
+    trait :no_images do
+      after(:build) {|item| item.item_images = []}
+    end
+    # trait :add_image do
     after(:build) do |item|
       item.item_images << build(:item_image)
-
-    #   parent_category = create(:category)
-    #   child_category = parent_category.children.create(name: "child")      
-    #   grand_child_category = child_category.children.create(name: "grandchild")
-
-    #   item.category_id = grand_child_category.id
-
+    # end
     end
   end
 end
