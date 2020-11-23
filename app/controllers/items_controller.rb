@@ -17,7 +17,6 @@ class ItemsController < ApplicationController
           @children = Category.find(params[:parent_id]).children
         #子ボックスのidから孫ボックスのidの配列を作成してインスタンス変数で定義
         elsif params[:child_id].present?
-          # binding.pry
           @grandchildren = Category.find(params[:child_id]).children
         end
       end
@@ -25,7 +24,6 @@ class ItemsController < ApplicationController
   end
   def create
     @item = Item.new(item_params)
-    # binding.pry
     if @item.save
       redirect_to root_path
     else  
@@ -53,8 +51,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
-    redirect_to root_path
+    if @item.destroy
+       redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private
