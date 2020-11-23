@@ -1,31 +1,34 @@
 .Listing
   .TopIcon
     = image_tag src='/assets/logo/logo.png', alt: '', class: 'TopIcon__icon'
-  = form_for @item, method: :post, local: true do |f|
+  = form_for @item, method: :post, local: true do |f| 
     .Content
+      - if f.object.errors.full_messages.length != 0
+        -# エラーの変数を定義して部分テンプレート呼び出し
+        = render partial: 'layouts/error_messages', locals: {errors: f.object.errors.full_messages}
       .Content__title
         %label.Content__title__name 出品画像
         %span.Content__title__Atag 必須
+      %p.Content__text 最大4枚までアップロード可能
       .Content__Field
-        = f.fields_for :item_images do |i|
-          #image-box
-            .js-file_group{data: {index: "#{i.index}"}}
-              = i.file_field :image, class: "js-file"
-              %span.js-remove 削除
-        -#     %label{for: "item_images_attributes_0_image", class: "LabelBox", id: "LabelBox--0"}
-        -#       = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--0'
-        -#   .Content__Field__Image
-        -#     %input{class:"HiddenField", type: "file", id: "item_images_attributes_1_image", 'data-id': 1 }
-        -#     %label{for: "item_images_attributes_1_image", class: "LabelBox", id: "LabelBox--1"}
-        -#       = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--1'
-        -#   .Content__Field__Image
-        -#     %input{class:"HiddenField", type: "file", name: "item[images_attributes][2][image]", id: "item_images_attributes_2_image", 'data-id': 2 }
-        -#     %label{for: "item_images_attributes_2_image", class: "LabelBox", id: "LabelBox--2"}
-        -#       = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--2'
-        -#   .Content__Field__Image
-        -#     %input{class:"HiddenField", type: "file", name: "item[images_attributes][3][image]", id: "item_images_attributes_3_image",'data-id': 3 }
-        -#     %label{for: "item_images_attributes_3_image", class: "LabelBox", id: "LabelBox--3"}
-        -#       = image_tag src='/assets/icon/icon_camera.png', alt: '', class: 'CameraIcon', id: 'CameraIcon--3'
+        .Content__Field__Image
+          .Content__Field__Previews
+            - if @item.persisted?
+              - @item.item_images.each_with_index do |image, i| 
+                = image_tag image.src.url, data: { index: i }, width: "146", height: '146'
+          .Content__Field__label 
+            %label{for: "item_item_images_attributes_0_image"}
+              %i.fas.fa-camera.fa-2x#CameraIcon
+            = f.fields_for :item_images do |i|
+              .JsFile__Group{data: {index: "#{i.index}"}}
+                = i.file_field :image, class: "JsFile"           
+                %span.JsRemove 削除
+            - if @item.persisted?
+              = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+          - if @item.persisted?
+            .JsFile__Group{data: {index: "#{@item.item_images.count}"}}
+              = file_field_tag :image, name: "item[item_images_attributes][#{@item.item_images.count}][image]", class: 'JsFile'
+              .JsRemove 削除
     .Content
       .Content__title
         %label.Content__title__name 商品名
@@ -47,27 +50,27 @@
       .Content__title
         %label.Content__title__name 商品の状態
         %span.Content__title__Atag 必須
-      = f.collection_select(:condition_id, Condition.all, :id, :name,{include_blank: "選択してください"}, class: "Content__AField" )
+      = f.collection_select(:condition_id, Condition.all, :id, :name,{prompt: "選択してください"}, class: "Content__AField" )
     .Content
       .Content__title
         %label.Content__title__name 配送料の負担
         %span.Content__title__Atag 必須
-      = f.collection_select(:shipping_cost_id, ShippingCost.all, :id, :status,{include_blank: " 選択してください"}, class: "Content__AField" )
+      = f.collection_select(:shipping_cost_id, ShippingCost.all, :id, :status,{prompt: " 選択してください"}, class: "Content__AField" )
       .Content__title
         %label.Content__title__name 発送元の地域
         %span.Content__title__Atag 必須
-      = f.collection_select(:area_id, Area.all, :id, :name,{include_blank: "選択してください"}, class: "Content__AField" )
+      = f.collection_select(:area_id, Area.all, :id, :name,{prompt: "選択してください"}, class: "Content__AField" )
       .Content__title
         %label.Content__title__name 発送までの日数
         %span.Content__title__Atag 必須
-      = f.collection_select(:day_id, Day.all, :id, :day,{include_blank: "選択してください"}, class: "Content__AField" )
+      = f.collection_select(:day_id, Day.all, :id, :day,{prompt: "選択してください"}, class: "Content__AField" )
     .Content
       .Content__title
         %label.Content__title__name 販売価格
         %span.Content__title__Atag 必須
-      = f.text_field :price, placeholder: " ¥300 ~ 2,000,000", class: "Content__CField"
+      = f.text_field :price, placeholder: " ¥300 ~ 9,000,000", class: "Content__CField"
     .Send
       = f.submit '出品する', class: 'Send__ABtn'
       .ReturnBtn
-        = link_to'もどる'
+        = link_to'もどる', items_path
     = render 'devise/registrations/footer'

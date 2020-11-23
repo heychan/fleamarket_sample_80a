@@ -1,11 +1,11 @@
 #error-messages{
   // margin: 1rem;
-  margin: 5% 0 0 30%;
+  margin: 5% 0 5% 30%;
   display: flex;
   flex-direction: column;
   // align-items: center;
   .error-message{
-    font-size: 8px;
+    font-size: 15px;
     color:red;
   }
 } 
