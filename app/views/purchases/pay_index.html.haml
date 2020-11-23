@@ -49,6 +49,6 @@
           hirai
     .Bottom__content
       .Buy__form
-        = form_with url: pay_purchases_path, method: :post , local: true do |f|
+        = form_with url: pay_purchase_url(@item), method: :post , local: true do |f|
           = f.submit '購入する', class: 'Buy__form__btn'
   = render 'devise/registrations/footer'
