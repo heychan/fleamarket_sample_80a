@@ -1,67 +1,90 @@
 .PickUpContainer {
-  padding-bottom: 80px;
+  padding: 80px 0;
   background-color: #f8f8f8;
   height: 100%;
-  margin: 0;
-}
 
-.Head {
-  text-align: center;
-  font-size: 28px;
-  line-height: 1.4;
-  font-weight: bold;
-}
-
-.ProductBox {
-  margin: 0;
-  padding: 0;
-  .ProductHead {
-    font-weight: bold;
+  .Head {
     text-align: center;
-    font-family: sans-serif;
+    font-size: 28px;
+    line-height: 1.4;
+    font-weight: bold;
   }
-  a {
-    text-decoration: none;
-    color: #3ccace;
-    font-size: 24px;
-  }
-  .ProductLists {
-    width: 780px;
-    margin: 26px auto;
-    display: flex;
-    justify-content: space-around;
-    .ProductList {
-      width: 220px;
-      display: inline-block;
-      &__img {
-        width: 220px;
-        height: 150px;
-        margin: 0;
-        overflow: hidden;
-        z-index: auto;
+
+  .ProductBox {
+    margin: 0;
+    padding: 0;
+    .ProductHead {
+      font-weight: bold;
+      text-align: center;
+      font-family: sans-serif;
+      a {
+        text-decoration: none;
+        color: #3ccace;
+        font-size: 24px;
       }
-      img {
-        width: 220px;
-        height: 150px;
-      }
-      &__body {
-        background-color: white;
-        color: #333;
-        padding: 16px;
-        .name {
-          line-height: 1.5;
-          font-size: 16px;
-          text-align: left;
-          font-family: sans-serif;
-        }
-        .details {
-          font-size: 16px;
-          ul {
-            display: flex;
-            justify-content: space-between;
+    }
+    .ProductLists {
+      width: 100%;
+      padding: 26px 10px;
+      display: flex;
+      justify-content: center;
+      .ProductList {
+        width: 17%;
+        padding: 0 8px;
+        display: inline-block;
+        &__img {
+          width: 100%;
+          height: 150px;
+          margin: 0;
+          z-index: auto;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
           }
-          p {
-            font-size: 10px;
+          .img{
+            width: 100%;
+            height: 100%;
+            background-color: darkgoldenrod;
+            overflow: hidden;
+            .items-box_photo__sold{
+              margin: 50px auto;
+              width: 80%;
+              background-color: #3ccace;
+              border-radius: 7px;
+              padding: 3px;
+              text-align: center;
+              &__inner{
+                color: #ffffff;
+                font-size: 36px;
+                font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+              }
+            }
+          }
+        }
+        // img {
+        //   width: 220px;
+        //   height: 150px;
+        // }
+        &__body {
+          background-color: white;
+          color: #333;
+          padding: 16px;
+          .name {
+            line-height: 1.5;
+            font-size: 16px;
+            text-align: left;
+            font-family: sans-serif;
+          }
+          .details {
+            font-size: 16px;
+            ul {
+              display: flex;
+              justify-content: space-between;
+            }
+            p {
+              font-size: 10px;
+            }
           }
         }
       }

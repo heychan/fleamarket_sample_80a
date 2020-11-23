@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_category, only:[:create]
   before_action :move_to_index, except: [:index]
   def index
+    @items = Item.includes(:item_images).order('created_at DESC').limit(5)
   end
 
   def new
