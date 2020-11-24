@@ -17,14 +17,10 @@
         %h2.Item__box__name
           =@item.name
         .Item__box__body
-          = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG', class: 'Main__image'
-          %ul.Sub__image
-            %li
-              = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png', class: ''
-            %li
-              = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/14/a001.png', class: ''
-            %li
-              = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/15/a003.png', class: ''
+          = image_tag @item.item_images[0].image.url, class: 'Main__image'
+          .Sub__image
+            - @item.item_images.each_with_index do |image, i| 
+              = image_tag @item.item_images[i].image.url, class: 'Sub__images'
         .Item__box__price
           %p=@item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
           .Item__box__price--detail
@@ -33,17 +29,25 @@
         - if user_signed_in? && (current_user.id == @item.user_id)
           .Purchase__content
             .Purchase__form
-              .Purchase__form__btn あなたが出品した商品です
-        - else
+              .Purchase__form__btn 商品を削除
+              .Purchase__form__btn 商品を編集
+        -if user_signed_in?
           - if @purchase.present?
             .Purchase__content
               .Purchase__form
                 .Purchase__form__btn SOLD OUT
-          - else
+          - elsif current_user.id != @item.user_id
             .Purchase__content
               .Purchase__form
                 = form_with url: pay_index_purchase_url(@item), method: :get , local: true do |f|
                   = f.submit '購入画面に進む', class: 'Purchase__form__btn'
+          - else
+            
+        - else
+          .Purchase__content
+            .Purchase__form
+              = form_with url: new_user_registration_path, method: :get , local: true do |f|
+                = f.submit 'ログインしてください', class: 'Purchase__form__btn'
         .Item__detail
           =@item.description
         .Table
