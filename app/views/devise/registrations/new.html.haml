@@ -8,11 +8,17 @@
         %p.newText 会員情報入力
       .AccountPage__title
         = form_with model:@user, url: user_registration_path, local: true do |f|
+          -# @userにエラーが存在する場合は
+          - if f.object.errors.full_messages.length != 0
+            -# エラーの変数を定義して部分テンプレート呼び出し
+            = render partial: 'layouts/error_messages', locals: {errors: f.object.errors.full_messages}
           .AccountPage__title--main
             .field
               = f.label :ニックネーム
               %span.Mandatory 必須
               = f.text_field :nickname, autofocus: true, autocomplete: "nickname",class: 'field__box', placeholder: "例）歩利馬三太郎"
+              -# -if @user.errors.messages[:nickname].present?
+              -#   = @user.errors.messages[:nickname]
             %br/
             .field
               = f.label :メールアドレス

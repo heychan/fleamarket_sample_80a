@@ -8,6 +8,10 @@
         %p.newText 商品送付先入力
       .AccountPage__title
         = form_with model: @address, url: addresses_path,method: :post, local: true do |f|
+          -# @userにエラーが存在する場合は
+          - if f.object.errors.full_messages.length != 0
+            -# エラーの変数を定義して部分テンプレート呼び出し
+            = render partial: 'layouts/error_messages', locals: {errors: f.object.errors.full_messages}
           .AccountPage__title--main
             .field
               = f.label "お名前(全角)"
