@@ -1,1 +1,33 @@
-%h2 購入が完了しました！
+.Listing
+  .TopIcon
+    = image_tag 'logo/logo.png', alt: '', class: 'TopIcon__icon'
+  .Buy__main
+    .Top__content
+      %h2.Style__heading
+        購入が完了しました！
+    .Content
+      .Item__box
+        .Item__box__image
+          .Style__thumbnail
+            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG'
+        .Item__box__detail
+          %p.Item__box__detail__name
+            =@item.name
+          %p.Item__box__detail__price
+            %span.tax
+              送料込み (税込)
+            %span.price
+              ¥
+              =@item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+    .Content
+      .Payment
+        %span
+          支払い金額
+        %span.Payment__amount
+          ¥
+          =@item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+    .Bottom__content
+      .Buy__form
+        = form_with url: root_path, method: :get, local: true do |f|
+          = f.submit 'トップページへ', class: 'Buy__form__btn'
+  = render 'devise/registrations/footer'

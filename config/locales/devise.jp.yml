@@ -40,6 +40,16 @@ ja:
         city: 市区町村
         house_number: 番地
         area_id: 都道府県
+      item:
+        item_images: 商品画像
+        name: 商品名
+        description: 商品の説明
+        condition_id: 商品の状態
+        shipping_cost_id: 配送料の負担
+        area_id: 発送元の地域
+        day_id: 発送までの日数
+        price: 価格
+        category: カテゴリー
     models:
       user: ユーザ
   devise:
