@@ -2,25 +2,26 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
   before_action :set_category, only:[:create]
   before_action :move_to_index, except: [:index]
+  before_action :category_js, only: [:new, :edit]
   def index
   end
 
   def new
     @item = Item.new
     @item_image = @item.item_images.build
-    @parents = Category.where(ancestry: nil)
-    respond_to do |format|
-      format.html
-      format.json do
-        #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
-        if params[:parent_id].present?
-          @children = Category.find(params[:parent_id]).children
-        #子ボックスのidから孫ボックスのidの配列を作成してインスタンス変数で定義
-        elsif params[:child_id].present?
-          @grandchildren = Category.find(params[:child_id]).children
-        end
-      end
-    end
+    # @parents = Category.where(ancestry: nil)
+    # respond_to do |format|
+    #   format.html
+    #   format.json do
+    #     #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
+    #     if params[:parent_id].present?
+    #       @children = Category.find(params[:parent_id]).children
+    #     #子ボックスのidから孫ボックスのidの配列を作成してインスタンス変数で定義
+    #     elsif params[:child_id].present?
+    #       @grandchildren = Category.find(params[:child_id]).children
+    #     end
+    #   end
+    # end
   end
   def create
     @item = Item.new(item_params)
@@ -31,6 +32,9 @@ class ItemsController < ApplicationController
     flash.now[:alert] = @item.errors.full_messages
     render :new and return
     end
+  end
+  
+  def edit
   end
 
   def show
@@ -70,6 +74,22 @@ class ItemsController < ApplicationController
 
   def set_category
     @parents = Category.where(ancestry: nil)
+  end
+
+  def category_js
+    @parents = Category.where(ancestry: nil)
+    respond_to do |format|
+      format.html
+      format.json do
+        #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
+        if params[:parent_id].present?
+          @children = Category.find(params[:parent_id]).children
+        #子ボックスのidから孫ボックスのidの配列を作成してインスタンス変数で定義
+        elsif params[:child_id].present?
+          @grandchildren = Category.find(params[:child_id]).children
+        end
+      end
+    end
   end
 
   def move_to_index

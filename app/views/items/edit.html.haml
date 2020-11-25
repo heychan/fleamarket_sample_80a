@@ -1,0 +1,76 @@
+.Listing
+  .TopIcon
+    = image_tag src='/assets/logo/logo.png', alt: '', class: 'TopIcon__icon'
+  = form_for @item, method: :put, local: true do |f| 
+    .Content
+      - if f.object.errors.full_messages.length != 0
+        -# エラーの変数を定義して部分テンプレート呼び出し
+        = render partial: 'layouts/error_messages', locals: {errors: f.object.errors.full_messages}
+      .Content__title
+        %label.Content__title__name 出品画像
+        %span.Content__title__Atag 必須
+      %p.Content__text 最大4枚までアップロード可能
+      .Content__Field
+        .Content__Field__Image
+          .Content__Field__Previews
+            -# - if @item.persisted?
+            -#   - @item.item_images.each_with_index do |image, i| 
+            -#     = image_tag image.image.url, data: { index: i }, class: "JsFile", width: "146", height: '146'
+          .Content__Field__label 
+            %label{for: "item_item_images_attributes_0_image"}
+              %i.fas.fa-camera.fa-2x#CameraIcon
+            = f.fields_for :item_images do |i|
+              .JsFile__Group{data: {index: "#{i.index}"}}
+                = i.file_field :image, class: "JsFile"           
+                %span.JsRemove 削除
+              - if @item.persisted?
+                = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+            - if @item.persisted?
+              .JsFile__Group{data: {index: "#{@item.item_images.count}"}}
+                = file_field_tag :image, name: "item[item_images_attributes][#{@item.item_images.count}][image]", class: 'JsFile'
+                .JsRemove 削除
+    .Content
+      .Content__title
+        %label.Content__title__name 商品名
+        %span.Content__title__Atag 必須
+      = f.text_field :name, placeholder: " 40文字まで", class: "Content__AField"
+      .Content__title
+        %label.Content__title__name 商品の説明
+        %span.Content__title__Atag 必須
+      = f.text_area :description, placeholder: ' 商品の説明(必須)', class: "Content__BField"
+    .Content
+      .Content__title
+        %label.Content__title__name カテゴリー
+        %span.Content__title__Atag 必須
+      = f.collection_select :category_id, @parents, :id, :name, {prompt: "選択して下さい"}, {class: "Content__AField", id: "category_select"}
+      .Content__title
+        %label.Content__title__name ブランド
+        %span.Content__title__Btag 任意
+      = f.text_field :brand_name, placeholder: " 例）シャネル", class: "Content__AField"
+      .Content__title
+        %label.Content__title__name 商品の状態
+        %span.Content__title__Atag 必須
+      = f.collection_select(:condition_id, Condition.all, :id, :name,{prompt: "選択してください"}, class: "Content__AField" )
+    .Content
+      .Content__title
+        %label.Content__title__name 配送料の負担
+        %span.Content__title__Atag 必須
+      = f.collection_select(:shipping_cost_id, ShippingCost.all, :id, :status,{prompt: " 選択してください"}, class: "Content__AField" )
+      .Content__title
+        %label.Content__title__name 発送元の地域
+        %span.Content__title__Atag 必須
+      = f.collection_select(:area_id, Area.all, :id, :name,{prompt: "選択してください"}, class: "Content__AField" )
+      .Content__title
+        %label.Content__title__name 発送までの日数
+        %span.Content__title__Atag 必須
+      = f.collection_select(:day_id, Day.all, :id, :day,{prompt: "選択してください"}, class: "Content__AField" )
+    .Content
+      .Content__title
+        %label.Content__title__name 販売価格
+        %span.Content__title__Atag 必須
+      = f.text_field :price, placeholder: " ¥300 ~ 9,000,000", class: "Content__CField"
+    .Send
+      = f.submit '変更する', class: 'Send__ABtn'
+      .ReturnBtn
+        = link_to'もどる', items_path
+    = render 'devise/registrations/footer'
