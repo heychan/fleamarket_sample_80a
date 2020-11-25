@@ -1,4 +1,4 @@
-%section.PickUpContainer
+%section.PickUpContainer__category
   %h2.Head ピックアップカテゴリー
   .ProductBox
     .ProductHead
@@ -9,13 +9,10 @@
         .ProductList
           =link_to item_path(item.id) do
             %figure.ProductList__img
-              -# = image_tag item.images[0].src.to_s
-              -# = image_tag item.item_images[0].image.url
-              -# = image_tag item.item_images.image.url             
-              .img
-                - if item.purchase.present?
-                  .items-box_photo__sold
-                    .items-box_photo__sold__inner SOLD
+              = image_tag item.item_images[0].image.url
+              - if item.purchase.present?
+                .items-box_photo__sold
+                  .items-box_photo__sold__inner SOLD
             .ProductList__body
               %h3.name
                 = item.name
@@ -23,7 +20,4 @@
                 %ul
                   %li
                     = "#{item.price}円 "
-                  -# %li 
-                  -#   = icon('fas', 'star')
-                  -#   1
                 %p (税込)
