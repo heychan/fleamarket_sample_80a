@@ -1,7 +1,5 @@
 class ItemsController < ApplicationController
-  # before_action :set_item, except: [:index, :new, :create]
   before_action :set_category, only:[:create]
-  # before_action :move_to_index, except: [:index]
   def index
     @items = Item.includes(:item_images).order('created_at DESC').limit(5)
   end
@@ -72,17 +70,9 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :description, :price, :category_id,:brand_name, :condition_id, :shipping_cost_id, :area_id, :day_id, item_images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
-  # def set_item
-  #   @item = Item.find(params[:id])
-  # end
 
   def set_category
     @parents = Category.where(ancestry: nil)
   end
 
-  # def move_to_index
-  #   unless user_signed_in?
-  #     redirect_to new_user_registration_path
-  #   end
-  # end
 end
