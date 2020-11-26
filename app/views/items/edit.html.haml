@@ -13,9 +13,12 @@
       .Content__Field
         .Content__Field__Image
           .Content__Field__Previews
-            -# - if @item.persisted?
-            -#   - @item.item_images.each_with_index do |image, i| 
-            -#     = image_tag image.image.url, data: { index: i }, class: "JsFile", width: "146", height: '146'
+            - if @item.persisted?
+              - @item.item_images.each_with_index do |image, i| 
+                .item-image__buttons--delete
+                  = image_tag image.image.url, data: { index: i }, width: "146", height: '146'
+
+                  %span.JsRemove 削除
           .Content__Field__label 
             %label{for: "item_item_images_attributes_0_image"}
               %i.fas.fa-camera.fa-2x#CameraIcon
