@@ -35,7 +35,8 @@
     = link_to('#', class: 'Footer__logo__btn') do
       = image_tag 'logo/logo-white.png', alt: '', class: 'Btn--image'
 
-= link_to(new_item_path, data: {turbolinks: false}) do
-  .PurchaseBtn
-    %span.PurchaseBtn__text 出品する
-    = image_tag 'icon/icon_camera.png', class: 'PurchaseBtn__icon'
+-if user_signed_in?
+  = link_to(new_item_path, data: {turbolinks: false}) do
+    .PurchaseBtn
+      %span.PurchaseBtn__text 出品する
+      = image_tag 'icon/icon_camera.png', class: 'PurchaseBtn__icon'
