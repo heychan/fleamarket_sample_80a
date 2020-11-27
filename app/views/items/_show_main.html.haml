@@ -26,11 +26,14 @@
           .Item__box__price--detail
             %span (税込)
             %span 送料込み
-        - if user_signed_in? && (current_user.id == @item.user_id)
+        - if user_signed_in? && (current_user.id == @item.user_id) && !@purchase.present?
           .Purchase__content
             .Purchase__form
-              .Purchase__form__btn 商品を削除
-              .Purchase__form__btn 商品を編集
+              = form_with url: item_path(@item), method: :delete , local: true do |f|
+                = f.submit '商品を削除', class: 'Purchase__form__btn', data: { confirm: '【確認】削除すると二度と復活できません。本当に削除しますか？' }
+                //編集は仮設定
+              = form_with url: root_path, method: :get, local: true do |f|
+                = f.submit '商品を編集', class: 'Purchase__form__btn'
         -if user_signed_in?
           - if @purchase.present?
             .Purchase__content

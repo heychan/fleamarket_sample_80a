@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_category, only:[:create]
+  before_action :move_to_index_destroy, only: [:destroy]
   def index
     @items = Item.includes(:item_images).order('created_at DESC').limit(5)
   end
@@ -39,10 +40,6 @@ class ItemsController < ApplicationController
     @purchase = Purchase.find_by(item_id: @item.id)
     @category_id = @item.category_id
     @category = Category.find(@category_id)
-    @condition = Condition.find(params[:id])
-    @shipping_cost = ShippingCost.find(params[:id])
-    @area = Area.find(params[:id])
-    @day = Day.find(params[:id])
   end
 
   def done
@@ -57,6 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+
     if @item.destroy
        redirect_to root_path
     else
@@ -73,6 +71,11 @@ class ItemsController < ApplicationController
 
   def set_category
     @parents = Category.where(ancestry: nil)
+  end
+
+  def move_to_index_destroy
+    @item = Item.find(params[:id])
+    redirect_to root_path unless current_user.id == @item.user_id
   end
 
 end
