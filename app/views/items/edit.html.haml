@@ -16,8 +16,7 @@
             - if @item.persisted?
               - @item.item_images.each_with_index do |image, i| 
                 .item-image__buttons--delete
-                  = image_tag image.image.url, data: { index: i }, width: "146", height: '146'
-
+                  = image_tag image.image.url, data: { index: i }, class: "JsFile", width: "146", height: '146'
                   %span.JsRemove 削除
           .Content__Field__label 
             %label{for: "item_item_images_attributes_0_image"}
@@ -32,6 +31,26 @@
               .JsFile__Group{data: {index: "#{@item.item_images.count}"}}
                 = file_field_tag :image, name: "item[item_images_attributes][#{@item.item_images.count}][image]", class: 'JsFile'
                 .JsRemove 削除
+        -# .Content__Field__Image
+        -#   .Content__Field__Previews
+        -#     - if @item.persisted?
+        -#       - @item.item_images.each_with_index do |image, i| 
+        -#         .item-image__buttons--delete
+        -#           = image_tag image.image.url, data: { index: i }, class: "JsFile_btn", width: "146", height: '146'
+        -#           %span.JsRemove 削除
+        -#   .Content__Field__label 
+        -#     %label{for: "item_item_images_attributes_0_image"}
+        -#       %i.fas.fa-camera.fa-2x#CameraIcon
+        -#     = f.fields_for :item_images do |i|
+        -#       .JsFile__Group{data: {index: "#{i.index}"}}
+        -#         = i.file_field :image, class: "JsFile"           
+        -#         %span.JsRemove 削除
+        -#       - if @item.persisted?
+        -#         = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+        -#     - if @item.persisted?
+        -#       .JsFile__Group{data: {index: "#{@item.item_images.count}"}}
+        -#         = file_field_tag :image, name: "item[item_images_attributes][#{@item.item_images.count}][image]", class: 'JsFile'
+        -#         .JsRemove 削除
     .Content
       .Content__title
         %label.Content__title__name 商品名

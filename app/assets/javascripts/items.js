@@ -28,6 +28,7 @@ $(document).on('turbolinks:load', ()=> {
 
   $('.Content__Field__Image').on('change', '.JsFile', function(e) {
     const targetIndex = $(this).parent().data('index');
+    console.log(targetIndex)
     $('label').attr('for', `item_item_images_attributes_${targetIndex+1}_image`);
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
@@ -62,8 +63,11 @@ $(document).on('turbolinks:load', ()=> {
     $(`img[data-index="${targetIndex}"]`).remove();
 
     // 画像入力欄が0個にならないようにしておく
+    // if ($('.JsFile').length == 0) {$('.Content__Field__Image').append(buildFileField(fileIndex[0]));
+    //   // $('.JsFile__Group').css('display', 'none');
+    // }    
     if ($('.JsFile').length == 0) $('.Content__Field__Image').append(buildFileField(fileIndex[0]));
-  
+
       $('#CameraIcon').css('display', 'block');
   });
 });
