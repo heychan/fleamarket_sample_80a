@@ -8,6 +8,8 @@
         %p.newText ログイン
       .AccountPage__title
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          - if f.object.errors.full_messages.length != 0
+            = render partial: 'layouts/error_messages', locals: {errors: f.object.errors.full_messages}
           .field
             = f.email_field :email, autofocus: true, placeholder: "メールアドレス", autocomplete: "email",class: 'field__box'
           .field

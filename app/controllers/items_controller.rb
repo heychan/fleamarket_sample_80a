@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else  
     @item.valid?
-    flash.now[:alert] = @item.errors.full_messages
+    # flash.now[:alert] = @item.errors.full_messages
     render :new and return
     end
   end
