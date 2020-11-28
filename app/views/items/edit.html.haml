@@ -1,6 +1,7 @@
 .Listing
   .TopIcon
-    = image_tag src='/assets/logo/logo.png', alt: '', class: 'TopIcon__icon'
+    = link_to '/', class:'' do
+      = image_tag 'logo/logo.png', alt: '', class: 'TopIcon__icon'
   = form_for @item, method: :put, local: true do |f| 
     .Content
       - if f.object.errors.full_messages.length != 0
