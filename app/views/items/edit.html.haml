@@ -21,16 +21,16 @@
           .Content__Field__label 
             %label{for: "item_item_images_attributes_0_image"}
               %i.fas.fa-camera.fa-2x#CameraIcon
-            = f.fields_for :item_images do |i|
+            = f.fields_for :item_images, @item.item_images.build do |i|
               .JsFile__Group{data: {index: "#{i.index}"}}
                 = i.file_field :image, class: "JsFile"           
                 %span.JsRemove 削除
-              - if @item.persisted?
-                = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
-            - if @item.persisted?
-              .JsFile__Group{data: {index: "#{@item.item_images.count}"}}
-                = file_field_tag :image, name: "item[item_images_attributes][#{@item.item_images.count}][image]", class: 'JsFile'
-                .JsRemove 削除
+            -#   - if @item.persisted?
+            -#     = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+            -# - if @item.persisted?
+            -#   .JsFile__Group{data: {index: "#{@item.item_images.count}"}}
+            -#     = file_field_tag :image, name: "item[item_images_attributes][#{@item.item_images.count}][image]", class: 'JsFile'
+            -#     .JsRemove 削除
         -# .Content__Field__Image
         -#   .Content__Field__Previews
         -#     - if @item.persisted?

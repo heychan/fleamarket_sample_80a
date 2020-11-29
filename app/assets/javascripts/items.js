@@ -45,9 +45,10 @@ $(document).on('turbolinks:load', ()=> {
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
-    let count = $('.JsFile').length;
+
+    let count = $('img').length;
       //プレビューが5あるときは、カメラアイコンを消しておく
-      if (count == 5) {
+      if (count >= 6) {
         $('#CameraIcon').css('display', 'none');
       }
   });
@@ -63,10 +64,7 @@ $(document).on('turbolinks:load', ()=> {
     $(`img[data-index="${targetIndex}"]`).remove();
 
     // 画像入力欄が0個にならないようにしておく
-    // if ($('.JsFile').length == 0) {$('.Content__Field__Image').append(buildFileField(fileIndex[0]));
-    //   // $('.JsFile__Group').css('display', 'none');
-    // }    
-    if ($('.JsFile').length == 0) $('.Content__Field__Image').append(buildFileField(fileIndex[0]));
+    if ($('.JsFile').length == 0) $('.Content__Field__Image').append(buildFileField(fileIndex[0]));  
 
       $('#CameraIcon').css('display', 'block');
   });
