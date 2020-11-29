@@ -1,6 +1,7 @@
 .Listing
   .TopIcon
-    = image_tag src='/assets/logo/logo.png', alt: '', class: 'TopIcon__icon'
+    = link_to '/', class:'' do
+      = image_tag 'logo/logo.png', alt: '', class: 'TopIcon__icon'
   = form_for @item, method: :put, local: true do |f| 
     .Content
       - if f.object.errors.full_messages.length != 0
@@ -64,7 +65,9 @@
       .Content__title
         %label.Content__title__name カテゴリー
         %span.Content__title__Atag 必須
-      = f.collection_select :category_id, @parents, :id, :name, {prompt: "選択して下さい"}, {class: "Content__AField", id: "category_select"}
+      = f.collection_select :category_id, @parents, :id, :name, {prompt: "選択して下さい", selected: @item.category.root_id}, {class: "Content__AField", id: "category_select"}
+      = f.collection_select :category_id, @item.category.parent.siblings, :id, :name, {prompt: "選択して下さい", selected: @item.category.parent}, {class: "Content__AField", id: "children_categories"}
+      = f.collection_select :category_id, @item.category.siblings, :id, :name, {prompt: "選択して下さい"}, {class: "Content__AField", id: "grandchildren_categories"}
       .Content__title
         %label.Content__title__name ブランド
         %span.Content__title__Btag 任意
