@@ -25,15 +25,18 @@
               %span.Mandatory 必須
               = f.email_field :email, autofocus: true, autocomplete: "email",class: 'field__box', placeholder: "PC・携帯どちらでも可"
             %br/
-            .field
-              = f.label :パスワード
-              %span.Mandatory 必須
-              = f.password_field :password, autocomplete: "new-password",class: 'field__box', placeholder: "6文字以上の半角英数字"
-            %br/
-            .field
-              = f.label :パスワード（確認）
-              %span.Mandatory 必須
-              = f.password_field :password_confirmation, autocomplete: "new-password",class: 'field__box', placeholder: "6文字以上の半角英数字"
+            - if @sns_id.present?
+              = hidden_field_tag :sns_auth, true
+            - else
+              .field
+                = f.label :パスワード
+                %span.Mandatory 必須
+                = f.password_field :password, autocomplete: "new-password",class: 'field__box', placeholder: "6文字以上の半角英数字"
+              %br/
+              .field
+                = f.label :パスワード（確認）
+                %span.Mandatory 必須
+                = f.password_field :password_confirmation, autocomplete: "new-password",class: 'field__box', placeholder: "6文字以上の半角英数字"
             %br/
             .field
               = f.label :お名前（全角）
@@ -55,4 +58,14 @@
             .actions
               = f.submit "次へ",class: 'actions__box'
         = render "devise/shared/links"
-  = render 'footer'
+  %f.usrfooter
+    %ul.inner
+      %li.inner__box 
+        %p.inner__box--text プライバシーポリシー
+      %li.inner__box
+        .inner__box--text FURIMA利用規約
+      %li.inner__box
+        .inner__box--text 特定商取引に関する表記
+    .usrfooter-logo
+      = link_to '/', class:'' do
+        = image_tag asset_path('logo/logo.png'), alt: '', class: 'usrfooter-logo__icon'

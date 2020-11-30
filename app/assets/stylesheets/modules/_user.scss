@@ -23,7 +23,7 @@
 }
 .AccountPage__title {
   padding: 0 0 40px 0;
-  border-top: 1px solid #f8f8f8;
+  border-top: 1px solid #eee;
   &--main{
     max-width: 343px;
     margin: 0 auto;
@@ -182,4 +182,22 @@ select {
 .card-message{
   text-align: center;
   margin: 20px;
+}
+.login-sns {
+  padding: 40px 64px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__google {
+    background-color: #fff;
+    border: 1px solid #979797;
+    width: 80%;
+    height: 30px;
+    padding: 3px 50px;
+    &__icon {
+      height: 20px;
+      width: 20px;
+    }
+  }
 }

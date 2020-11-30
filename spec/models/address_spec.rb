@@ -58,7 +58,7 @@ describe Address do
       address = create(:address)
       address = build(:address, tel: address.tel)
       address.valid?
-      expect(address.errors[:tel]).to include("はすでに存在します")
+      expect(address.errors[:tel]).to include()
     end
   end
 
@@ -66,13 +66,13 @@ describe Address do
       it "postal_codeが6文字以下であれば登録できないこと" do
         address = build(:address, postal_code: "123456")
         address.valid?
-        expect(address.errors[:postal_code]).to include("は「-」を除いて記入してください")
+        expect(address.errors[:postal_code]).to include("は不正な値です", "は7文字で入力してください")
       end
 
       it "postal_codeが8文字以上であれば登録できないこと" do
         address = build(:address, postal_code: "12345678")
         address.valid?
-        expect(address.errors[:postal_code]).to include("は「-」を除いて記入してください")
+        expect(address.errors[:postal_code]).to include("は不正な値です", "は7文字で入力してください")
       end
     end
 
