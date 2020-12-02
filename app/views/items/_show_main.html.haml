@@ -83,16 +83,14 @@
               = link_to '' do
                 = icon('fas', 'flag')
                 不適切な商品の通報
-      .Comment__box
-        %form.New__comment
-          %textarea{name:"comment[body]", class:"New__comment__body"}
-          %p.Notice__msg
-            相手のことを考え丁寧なコメントを心がけましょう。
-            %br/
-            不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          = button_tag class:'Comment__btn' do
-            = icon('fa', 'comment')
-            コメントする
+      .Comment__box    
+        = form_with(model: [@item, @comment], local: true) do |f| 
+          = f.text_area :text, placeholder: "コメントする", rows: "2"
+        %p.Notice__msg
+          相手のことを考え丁寧なコメントを心がけましょう。
+          %br/
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          = f.submit "コメントする"
     %ul.Links
       %li
         = link_to'< 前の商品'

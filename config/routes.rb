@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :users, only: [:show,:destroy]
   resources :items, only: [:index, :new, :create, :show, :edit, :update, :destory] do
+    resources :comments, only: :create
     # 商品購入確認ページのフロントエンド確認のため仮置き
     collection do
       get 'buy'
