@@ -41,6 +41,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     #find_byでitemがあるかないかあったら@purchaseにいれる
     @purchase = Purchase.find_by(item_id: @item.id)
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def done
