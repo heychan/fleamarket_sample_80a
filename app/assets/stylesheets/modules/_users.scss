@@ -46,6 +46,7 @@
   background-color: gainsboro;
   padding: 30px 0px;
   height: calc(100vh - 400px);
+  overflow:scroll;
   .l-container{
     margin: 0 auto;
     width: 1020px;
@@ -76,7 +77,7 @@
       .mypage-user-icon{
         height: 200px;
         position: relative;
-        background: url("pict/bg-topMiddleDl-pict.jpg");
+        background-image: image-url("pict/bg-topMiddleDl-pict.jpg");
         background-size: cover;
         text-align: center;
         .icon{

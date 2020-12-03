@@ -1,4 +1,10 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :condition
+  belongs_to_active_hash :shipping_cost
+  belongs_to_active_hash :area
+  belongs_to_active_hash :day
+
   has_many :item_images, dependent: :destroy
   accepts_nested_attributes_for :item_images, allow_destroy: true
   # 外部キー設定しているカラムはアソシエーションで関係性が組まれているためバリデーションの記述はしなくても良い
@@ -8,7 +14,17 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :user
 
-  has_one :purchase
+  has_one :purchase, dependent: :destroy
+
+  def self.search(search)
+    if search != ""
+      Item.where('name LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
 
   has_many :comments
+
+
 end
