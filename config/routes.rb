@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new, :create, :show, :destroy] do
     # 商品購入確認ページのフロントエンド確認のため仮置き
     collection do
-      get 'buy'
+      get 'search'
     end
   end
   devise_scope :users do

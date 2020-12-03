@@ -5,11 +5,10 @@
         = link_to '/', class:'' do
           = image_tag 'logo/logo.png', alt: '', class: 'Main__header__icon'
       .Search__box
-        %form.Form__contents
-          %input.Form__inputText{placeholder: "キーワードから探す", type: "search"}
+        =form_with(url: search_items_path, local: true, method: :get, class: "Form__contents") do |form|
+          =form.text_field :keyword,placeholder: "キーワードから探す", class: "Form__inputText"
           %button.Search__btn{type: "submit"}
             = image_tag 'icon/icon-search 1.png', class: 'Search__btn--icon'
-
     .Nav
       %ul.Lists__left
         %li

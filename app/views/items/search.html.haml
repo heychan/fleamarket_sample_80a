@@ -1,0 +1,24 @@
+= render "items/pc_header"
+.search_top
+  .ProductBox
+    .ProductHead
+      %h3.title 
+      = link_to "検索結果"
+      .ProductLists
+        - @items.each do |item|
+          .ProductList
+            =link_to item_path(item.id) do
+              %figure.ProductList__img
+                = image_tag item.item_images[0].image.url
+                - if item.purchase.present?
+                  .items-box_photo__sold
+                    .items-box_photo__sold__inner SOLD
+              .ProductList__body
+                %h3.name
+                  = item.name
+                .details
+                  %ul
+                    %li
+                      = "#{item.price}円 "
+                  %p (税込)
+= render 'footer'
