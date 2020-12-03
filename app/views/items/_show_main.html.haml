@@ -93,14 +93,23 @@
                   .ItemUser 出品者
               %li.CommentText
                 = comment.text
-        - if user_signed_in?    
-          = form_with(model: [@item, @comment], class: "New__comment", local: true) do |f| 
-            = f.text_area :text, class:"New__comment__body", rows: "2"
-            %p.Notice__msg
-              相手のことを考え丁寧なコメントを心がけましょう
-              %br/
-              不快な言葉遣いなどは利用制限や退会処分となることがあります。
-            = f.submit "コメントする", class:'Comment__btn'
+        - if user_signed_in?
+          - if @purchase.present?    
+            = form_with(model: [@item, @comment], class: "New__comment", local: true) do |f| 
+              = f.text_area :text, class:"New__comment__body", rows: "2"
+              %p.Notice__msg
+                相手のことを考え丁寧なコメントを心がけましょう
+                %br/
+                不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              = f.submit "売り切れのためコメントできません", class:'Soldout__btn'
+          - else
+            = form_with(model: [@item, @comment], class: "New__comment", local: true) do |f| 
+              = f.text_area :text, class:"New__comment__body", rows: "2"
+              %p.Notice__msg
+                相手のことを考え丁寧なコメントを心がけましょう
+                %br/
+                不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              = f.submit "コメントする", class:'Comment__btn'
       -# %p.Notice__msg
       -#   相手のことを考え丁寧なコメントを心がけましょう。
       -#   %br/
