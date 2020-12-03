@@ -46,12 +46,16 @@ $(document).on('turbolinks:load', ()=> {
     }
 
     let count = $('img').length;
-      //プレビューが5あるときは、カメラアイコンを消しておく
-      if (count >= 6) {
+      //プレビューが5を超えたときは、カメラアイコンを消す
+      if (count > 5) {
         $('#CameraIcon').css('display', 'none');
       }
   });
-
+  let count = $('img').length;
+  //プレビューが5を超えたときは、カメラアイコンを消す
+  if (count > 5) {
+    $('#CameraIcon').css('display', 'none');
+  }
   $('.Content__Field__Image').on('click', '.JsRemove', function() {
     const targetIndex = $(this).parent().data('index');
     // 該当indexを振られているチェックボックスを取得する
