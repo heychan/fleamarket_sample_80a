@@ -15,4 +15,14 @@ class Item < ApplicationRecord
   belongs_to :user
 
   has_one :purchase, dependent: :destroy
+
+  def self.search(search)
+    if search != ""
+      Item.where('name LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
+
+
 end
