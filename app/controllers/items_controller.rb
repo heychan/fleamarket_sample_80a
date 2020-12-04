@@ -80,6 +80,9 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :description, :price, :category_id,:brand_name, :condition_id, :shipping_cost_id, :area_id, :day_id, item_images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   def set_category
     @parents = Category.where(ancestry: nil)
@@ -105,6 +108,8 @@ class ItemsController < ApplicationController
     unless user_signed_in?
       redirect_to new_user_registration_path
     end
+  end
+
   def move_to_index_destroy
     @item = Item.find(params[:id])
     redirect_to root_path unless current_user.id == @item.user_id
