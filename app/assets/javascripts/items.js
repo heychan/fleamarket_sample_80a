@@ -25,6 +25,7 @@ $(document).on('turbolinks:load', ()=> {
   fileIndex.splice(0, lastIndex);
 
   $('.hidden-destroy').hide();
+  $('.hidden-destroy').removeAttr('checked').prop('checked', false).change();
 
   $('.Content__Field__Image').on('change', '.JsFile', function(e) {
     const targetIndex = $(this).parent().data('index');

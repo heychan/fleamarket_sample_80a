@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
-  before_action :set_category, only:[:create]
+  before_action :set_category, only:[:create, :update]
   before_action :move_to_index, except: [:index]
   before_action :category_js, only: [:new, :edit]
   def index
