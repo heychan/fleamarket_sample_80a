@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
-  before_action :set_category, only:[:create]
+  before_action :set_category, only:[:create, :update]
   before_action :move_to_index, except: [:index]
   before_action :category_js, only: [:new, :edit]
   def index
@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   end
   
   def create
+    binding.pry
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
@@ -38,7 +39,7 @@ class ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       redirect_to root_path
-    else  
+    else
       render :edit
     end
   end
