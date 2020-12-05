@@ -14,7 +14,6 @@ class ItemsController < ApplicationController
   end
   
   def create
-    binding.pry
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
@@ -92,6 +91,8 @@ class ItemsController < ApplicationController
     unless user_signed_in?
       redirect_to new_user_registration_path
     end
+  end
+
   def move_to_index_destroy
     @item = Item.find(params[:id])
     redirect_to root_path unless current_user.id == @item.user_id
