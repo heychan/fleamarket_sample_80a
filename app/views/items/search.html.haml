@@ -21,4 +21,16 @@
                     %li
                       = "#{item.price}円 "
                   %p (税込)
+  .test
+    .sc-side__detail__field
+      %h5.sc-side__detail__field__label
+        %i.fas.fa-search-dollar
+        = f.label :price, '価格'
+      .sc-side__detail__field__form
+        = select_tag :price_range, options_from_collection_for_select(PriceRange.all, :id, :name), { prompt: "選択してください"}
+      .sc-side__detail__field__form.price-range
+        = f.number_field :price_gteq, placeholder: "¥ Min", class: 'price-range__input'
+        .price-range__swang
+        = f.number_field :price_lteq, placeholder: "¥ Max", class: 'price-range__input'
+
 = render 'footer'

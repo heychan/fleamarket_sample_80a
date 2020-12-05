@@ -19,5 +19,9 @@ class ApplicationController < ActionController::Base
     added_attrs = [ :nickname, :email, :password , :last_name, :first_name, :last_name_furigana, :first_name_furigana, :birth_date]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
   end
-
+  
+  def set_item_search_query
+    @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true)
+  end
 end

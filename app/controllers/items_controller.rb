@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_category, only:[:create]
   before_action :move_to_index_destroy, only: [:destroy]
+  before_action :set_item_search_query
   def index
     @items = Item.includes(:item_images).order('created_at DESC').limit(5)
   end
@@ -64,7 +65,20 @@ class ItemsController < ApplicationController
 
   def search
     @items = Item.search(params[:keyword])
+
+    @q = Item.includes(:images).search(search_items_path)
+    sort = params[:sort] || "created_at DESC"    
+    # jsから飛んできたパラーメーターが"likes_count_desc"の場合に、子モデルの多い順にソートする記述を  
+    if sort == "likes_count_desc"
+      @items = @q.result(distinct: true).select('items.*', 'count(likes.id) AS likes')
+        .left_joins(:likes)
+        .group('items.id')
+        .order('likes DESC').order('created_at DESC')
+    else
+    end
   end
+
+
   private
 
   def item_params
