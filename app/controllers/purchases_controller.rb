@@ -4,7 +4,12 @@ class PurchasesController < ApplicationController
   before_action :set_item
 
   def pay_index
-    # @top_image = @item.images.first
+    unless user_signed_in?
+      redirect_to new_user_registration_path
+      
+    end
+    
+    @address =Address.find(current_user.id)
     @card = @set_card.first
     if @card.blank?
       redirect_to controller: "card", action: "new"
@@ -27,7 +32,6 @@ class PurchasesController < ApplicationController
   end
 
   def done
-    # @top_image = @item.images.first
     Purchase.create(item_id: @item.id, user_id: current_user.id)
   end
 

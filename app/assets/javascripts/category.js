@@ -26,7 +26,7 @@ $(function(){
   }
   // 親カテゴリーセレクトボックスの選択を変えたら、イベント発火
   $("#category_select").on("change", function () {
-    // 取得した親カテゴリーのvalueをcategoryに代入
+    // 取得した親カテゴリーのvalueをparentCategoryに代入
     let parentCategory =  $("#category_select").val();
     // parentCategoryが空でない場合のみAjaxを行う
     if (parentCategory == ""){
@@ -63,7 +63,7 @@ $(function(){
     }
   });
 
-  // 子カテゴリ選択でイベント発火
+  // 子カテゴリ選択でイベント発火（動的に表示されたセレクトボックスのため$(document)を指定
   $(document).on("change", "#children_categories", function(){
     // 取得した子カテゴリのvalueを代入
     let childCategory = $("#children_categories").val();

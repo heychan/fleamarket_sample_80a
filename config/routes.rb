@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "users/out", to: "users#index"
   get "/mypage", to: "users#mypage"
   devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
     registrations: 'users/registrations',
   }
   devise_scope :user do
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new, :create, :show, :edit, :update, :destory] do
     # 商品購入確認ページのフロントエンド確認のため仮置き
     collection do
-      get 'buy'
+      get 'search'
     end
   end
   devise_scope :users do

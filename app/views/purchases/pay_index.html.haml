@@ -9,21 +9,23 @@
       .Item__box
         .Item__box__image
           .Style__thumbnail
-            = image_tag 'https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/18/beef.JPG'
+            = image_tag @item.item_images[0].image.url
         .Item__box__detail
           %p.Item__box__detail__name
-            謎の肉
+            =@item.name
           %p.Item__box__detail__price
             %span.tax
               送料込み (税込)
             %span.price
-              ¥18,000
+              ¥
+              =@item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
     .Content
       .Payment
         %span
           支払い金額
         %span.Payment__amount
-          ¥18,100
+          ¥
+          =@item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
       %label.Electronic__payment
     .Content
       .Title
@@ -32,9 +34,9 @@
         = link_to '変更する>'
       .Payment__method
         %p.Payment__method__name
-          コンビニ/ATM払い
+          クレジットカード
         %p.Payment__method__fee
-          (手数料¥10000)
+          (手数料¥0)
     .Content
       .Title
         %h3.Title__neme
@@ -42,11 +44,13 @@
         = link_to '変更する>'
       .Shipping__address
         %p.Shipping__address__info
-          〒500-0000
+          〒
+          =@address.postal_code
           %br/
-          岐阜県
+          =@address.area.name
           %br/
-          hirai
+          =@address.last_name
+          =@address.first_name
     .Bottom__content
       .Buy__form
         = form_with url: pay_purchase_url(@item), method: :post , local: true do |f|

@@ -1,4 +1,10 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :condition
+  belongs_to_active_hash :shipping_cost
+  belongs_to_active_hash :area
+  belongs_to_active_hash :day
+
   has_many :item_images, dependent: :destroy
   # レコードが削除された場合、関連付いているitem_imatesのレコードも一緒に削除
   accepts_nested_attributes_for :item_images, allow_destroy: true, reject_if: :no_image
@@ -13,5 +19,15 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :user
 
-  has_one :purchase
+  has_one :purchase, dependent: :destroy
+
+  def self.search(search)
+    if search != ""
+      Item.where('name LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
+
+
 end

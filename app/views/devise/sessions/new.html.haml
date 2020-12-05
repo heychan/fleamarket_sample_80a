@@ -6,8 +6,15 @@
     .Main-AccountPage__move
       .Main-AccountPage__move--title
         %p.newText ログイン
+      .login-sns
+        = link_to user_google_oauth2_omniauth_authorize_path, class: "login-sns__google", method: :post do
+          = icon('fab', 'google', class: 'login-sns__google__icon')
+          Googleでログインする
+
       .AccountPage__title
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          - if f.object.errors.full_messages.length != 0
+            = render partial: 'layouts/error_messages', locals: {errors: f.object.errors.full_messages}
           .field
             = f.email_field :email, autofocus: true, placeholder: "メールアドレス", autocomplete: "email",class: 'field__box'
           .field
