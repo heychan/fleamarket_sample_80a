@@ -29,5 +29,7 @@ class Item < ApplicationRecord
     end
   end
 
+  has_many :comments
+
 
 end

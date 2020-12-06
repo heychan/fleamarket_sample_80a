@@ -98,15 +98,37 @@
                 = icon('fas', 'flag')
                 不適切な商品の通報
       .Comment__box
-        %form.New__comment
-          %textarea{name:"comment[body]", class:"New__comment__body"}
-          %p.Notice__msg
-            相手のことを考え丁寧なコメントを心がけましょう。
-            %br/
-            不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          = button_tag class:'Comment__btn' do
-            = icon('fa', 'comment')
-            コメントする
+        -if @comments
+          - @comments.each do |comment|
+            %ul.ComenntLists
+              %li.CommentName
+                = link_to comment.user.nickname, "/users/#{comment.user_id}"
+                - if (comment.user.id == @item.user_id)
+                  .ItemUser 出品者
+              %li.CommentText
+                = comment.text
+        - if user_signed_in?
+          - if @purchase.present?    
+            = form_with(model: [@item, @comment], class: "New__comment", local: true) do |f| 
+              = f.text_area :text, class:"New__comment__body", rows: "2"
+              %p.Notice__msg
+                相手のことを考え丁寧なコメントを心がけましょう
+                %br/
+                不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              = f.submit "売り切れのためコメントできません", class:'Soldout__btn'
+          - else
+            = form_with(model: [@item, @comment], class: "New__comment", local: true) do |f| 
+              = f.text_area :text, class:"New__comment__body", rows: "2"
+              %p.Notice__msg
+                相手のことを考え丁寧なコメントを心がけましょう
+                %br/
+                不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              = f.submit "コメントする", class:'Comment__btn'
+      -# %p.Notice__msg
+      -#   相手のことを考え丁寧なコメントを心がけましょう。
+      -#   %br/
+      -#   不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      -#   = f.submit "コメントする"
     %ul.Links
       %li
         = link_to'< 前の商品'

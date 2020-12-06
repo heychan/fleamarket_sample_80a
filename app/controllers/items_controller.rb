@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:edit, :update, :show]
   before_action :set_category, only:[:create, :update]
   before_action :move_to_index, except: [:index, :show]
   before_action :category_js, only: [:new, :edit]
@@ -24,15 +25,15 @@ class ItemsController < ApplicationController
   end
   
   def edit
-    @item = Item.find(params[:id])
     @item.item_images.build
   end
 
   def show
-    @item = Item.find(params[:id])
     @user = User.find(@item.user_id)
     #find_byでitemがあるかないかあったら@purchaseにいれる
     @purchase = Purchase.find_by(item_id: @item.id)
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
     @category_id = @item.category_id
     @category = Category.find(@category_id)
   end
@@ -41,7 +42,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to root_path
     else
@@ -67,6 +67,9 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :description, :price, :category_id,:brand_name, :condition_id, :shipping_cost_id, :area_id, :day_id, item_images_attributes: [:image, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   def set_category
     @parents = Category.where(ancestry: nil)
