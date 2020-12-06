@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_category, only:[:create, :update]
-  before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index, :show]
   before_action :category_js, only: [:new, :edit]
   before_action :move_to_index_destroy, only: [:destroy]
   def index
@@ -41,6 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def update
+    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to root_path
     else
