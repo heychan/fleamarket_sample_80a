@@ -31,8 +31,8 @@
             .Purchase__form
               = form_with url: item_path(@item), method: :delete , local: true do |f|
                 = f.submit '商品を削除', class: 'Purchase__form__btn', data: { confirm: '【確認】削除すると二度と復活できません。本当に削除しますか？' }
-                //編集は仮設定
-              = form_with url: root_path, method: :get, local: true do |f|
+
+              = form_with url: edit_item_url(@item.id), method: :get, local: true do |f|
                 = f.submit '商品を編集', class: 'Purchase__form__btn'
         -if user_signed_in?
           - if @purchase.present?

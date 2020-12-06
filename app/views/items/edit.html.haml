@@ -1,6 +1,7 @@
 .Listing
   .TopIcon
-    = image_tag src='/assets/logo/logo.png', alt: '', class: 'TopIcon__icon'
+    = link_to '/', class:'' do
+      = image_tag 'logo/logo.png', alt: '', class: 'TopIcon__icon'
   = form_for @item, method: :put, local: true do |f| 
     .Content
       - if f.object.errors.full_messages.length != 0
@@ -13,18 +14,21 @@
       .Content__Field
         .Content__Field__Image
           .Content__Field__Previews
-            - if @item.persisted?
-              - @item.item_images.each_with_index do |image, i| 
-                .item-image__buttons--delete
-                  = image_tag image.image.url, data: { index: i }, class: "JsFile", width: "146", height: '146'
-                  %span.JsRemove 削除
-          .Content__Field__label 
-            %label{for: "item_item_images_attributes_0_image"}
+            - @item.item_images.each_with_index do |image, i| 
+              - if image.persisted?
+                .item-image__buttons--delete{data: {index: i}}
+                  = image_tag image.image.url, class: "JsFile", width: "146", height: '146'
+                  .JsRemove 削除
+          .Content__Field__label
+            -# editでは枚数が随時変わるためfor属性の値も変わるよう記述
+            %label{for: "item_item_images_attributes_#{@item.item_images.length - 1}_image"}
               %i.fas.fa-camera.fa-2x#CameraIcon
-            = f.fields_for :item_images, @item.item_images.build do |i|
-              .JsFile__Group{data: {index: "#{i.index}"}}
-                = i.file_field :image, class: "JsFile"           
-                %span.JsRemove 削除
+            = f.fields_for :item_images do |i|
+              .JsFile__Group{data: {index: i.index}}
+                = i.file_field :image, class: "JsFile"
+                .JsRemove 削除
+              - if @item.persisted?
+                = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
     .Content
       .Content__title
         %label.Content__title__name 商品名
@@ -38,8 +42,13 @@
       .Content__title
         %label.Content__title__name カテゴリー
         %span.Content__title__Atag 必須
-      = f.collection_select :category_id, @parents, :id, :name, {prompt: "選択して下さい"}, {class: "Content__AField", id: "category_select"}
-      .Content__title
+      - if @item.category_id != nil
+        = f.collection_select :category_id, @parents, :id, :name, {prompt: "選択して下さい", selected: @item.category.root_id}, {class: "Content__AField", id: "category_select"}
+        = f.collection_select :category_id, @item.category.parent.siblings, :id, :name, {prompt: "選択して下さい", selected: @item.category.parent}, {class: "Content__AField", id: "children_categories"}
+        = f.collection_select :category_id, @item.category.siblings, :id, :name, {prompt: "選択して下さい"}, {class: "Content__AField", id: "grandchildren_categories"}
+      - else
+        = f.collection_select :category_id, @parents, :id, :name, {prompt: "選択して下さい"}, {class: "Content__AField", id: "category_select"}
+      .Content__title  
         %label.Content__title__name ブランド
         %span.Content__title__Btag 任意
       = f.text_field :brand_name, placeholder: " 例）シャネル", class: "Content__AField"

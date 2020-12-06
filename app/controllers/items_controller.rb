@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:index, :new, :create]
+  before_action :set_item, only: [:edit, :update, :show]
   before_action :set_category, only:[:create, :update]
-  before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index, :show]
   before_action :category_js, only: [:new, :edit]
+  before_action :move_to_index_destroy, only: [:destroy]
   def index
     @items = Item.includes(:item_images).order('created_at DESC').limit(5)
   end
@@ -11,6 +12,7 @@ class ItemsController < ApplicationController
     @item = Item.new
     @item_image = @item.item_images.build
   end
+  
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -23,10 +25,10 @@ class ItemsController < ApplicationController
   end
   
   def edit
+    @item.item_images.build
   end
 
   def show
-    @item = Item.find(params[:id])
     @user = User.find(@item.user_id)
     #find_byでitemがあるかないかあったら@purchaseにいれる
     @purchase = Purchase.find_by(item_id: @item.id)
@@ -43,9 +45,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to root_path
     else
-      @item.valid?
-      flash.now[:alert] = @item.errors.full_messages
-      render :edit and return  
+      render :edit
     end
   end
 

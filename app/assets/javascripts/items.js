@@ -1,10 +1,10 @@
 $(document).on('turbolinks:load', ()=> {
   // 画像用のinputを生成する関数
-  const buildFileField = (num)=> {
-    const html = `<div data-index="${num}" class="JsFile__Group">
+  const buildFileField = (index)=> {
+    const html = `<div data-index="${index}" class="JsFile__Group">
                     <input class="JsFile" type="file"
-                    name="item[item_images_attributes][${num}][image]"
-                    id="item_item_images_attributes_${num}_image"><br>
+                    name="item[item_images_attributes][${index}][image]"
+                    id="item_item_images_attributes_${index}_image"><br>
                     <div class="JsRemove">削除</div>
                   </div>`;
     return html;
@@ -25,10 +25,10 @@ $(document).on('turbolinks:load', ()=> {
   fileIndex.splice(0, lastIndex);
 
   $('.hidden-destroy').hide();
+  $('.hidden-destroy').removeAttr('checked').prop('checked', false).change();
 
   $('.Content__Field__Image').on('change', '.JsFile', function(e) {
     const targetIndex = $(this).parent().data('index');
-    console.log(targetIndex)
     $('label').attr('for', `item_item_images_attributes_${targetIndex+1}_image`);
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
@@ -47,12 +47,16 @@ $(document).on('turbolinks:load', ()=> {
     }
 
     let count = $('img').length;
-      //プレビューが5あるときは、カメラアイコンを消しておく
-      if (count >= 6) {
+      //プレビューが5を超えたときは、カメラアイコンを消す
+      if (count > 5) {
         $('#CameraIcon').css('display', 'none');
       }
   });
-
+  let count = $('img').length;
+  //プレビューが5を超えたときは、カメラアイコンを消す
+  if (count > 5) {
+    $('#CameraIcon').css('display', 'none');
+  }
   $('.Content__Field__Image').on('click', '.JsRemove', function() {
     const targetIndex = $(this).parent().data('index');
     // 該当indexを振られているチェックボックスを取得する
