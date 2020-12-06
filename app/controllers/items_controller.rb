@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_category, only:[:create]
+  before_action :set_category, only:[:create, :update]
+  before_action :move_to_index, except: [:index]
+  before_action :category_js, only: [:new, :edit]
   before_action :move_to_index_destroy, only: [:destroy]
   def index
     @items = Item.includes(:item_images).order('created_at DESC').limit(5)
@@ -8,20 +10,8 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item_image = @item.item_images.build
-    @parents = Category.where(ancestry: nil)
-    respond_to do |format|
-      format.html
-      format.json do
-        #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
-        if params[:parent_id].present?
-          @children = Category.find(params[:parent_id]).children
-        #子ボックスのidから孫ボックスのidの配列を作成してインスタンス変数で定義
-        elsif params[:child_id].present?
-          @grandchildren = Category.find(params[:child_id]).children
-        end
-      end
-    end
   end
+  
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -31,6 +21,11 @@ class ItemsController < ApplicationController
     # flash.now[:alert] = @item.errors.full_messages
     render :new and return
     end
+  end
+  
+  def edit
+    @item = Item.find(params[:id])
+    @item.item_images.build
   end
 
   def show
@@ -48,7 +43,7 @@ class ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       redirect_to root_path
-    else  
+    else
       render :edit
     end
   end
@@ -74,6 +69,28 @@ class ItemsController < ApplicationController
 
   def set_category
     @parents = Category.where(ancestry: nil)
+  end
+
+  def category_js
+    @parents = Category.where(ancestry: nil)
+    respond_to do |format|
+      format.html
+      format.json do
+        #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
+        if params[:parent_id].present?
+          @children = Category.find(params[:parent_id]).children
+        #子ボックスのidから孫ボックスのidの配列を作成してインスタンス変数で定義
+        elsif params[:child_id].present?
+          @grandchildren = Category.find(params[:child_id]).children
+        end
+      end
+    end
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to new_user_registration_path
+    end
   end
 
   def move_to_index_destroy

@@ -74,14 +74,12 @@
     }
     .JsFile__Group {
       display: none;
-    }
+    }    
     .JsFile {
-      background-color: #3ccace;
     }
     .JsRemove {
       text-align: center;
       height: 25px;
-      //background-color: #dcdcdc;
       color: #3ccace;
       font-family: sans-serif;
       margin: 0 2px;
@@ -91,7 +89,7 @@
     &__AField {
       width: 100%;
       height: 50px;
-      margin: 20px auto 50px;
+      margin: 0 auto 30px;
     }
     &__BField {
       width: 100%;
