@@ -58,7 +58,7 @@ $(document).on('turbolinks:load', ()=> {
     $('#CameraIcon').css('display', 'none');
   }
   $('.Content__Field__Image').on('click', '.JsRemove', function() {
-    const targetIndex = $(this).prev().data('index');
+    const targetIndex = $(this).parent().data('index');
 
     // 該当indexを振られているチェックボックスを取得する
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
