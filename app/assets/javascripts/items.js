@@ -66,7 +66,6 @@ $(document).on('turbolinks:load', ()=> {
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
     $(this).parent().remove();
-    console.log(targetIndex)
     $(`div[data-index="${targetIndex}"]`).remove();
 
 
